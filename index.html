@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-<title>CSC 331 — Practice Quiz 3: Learn Every Question</title>
+<title>CSC 331 — Topic Guide & Practice Quiz 3 Tutor</title>
 <style>
   :root{
     --bg:#0a0f1c;--bg-2:#0e1426;--panel:#131a2f;--panel-2:#1a2240;--panel-3:#232c52;
@@ -17,7 +17,7 @@
     background:var(--bg);
     background-image:radial-gradient(at 80% 0%,rgba(94,234,212,.06) 0,transparent 50%),
                      radial-gradient(at 0% 90%,rgba(147,197,253,.05) 0,transparent 50%);
-    color:var(--text);line-height:1.6;min-height:100vh;font-size:15px;-webkit-font-smoothing:antialiased;}
+    color:var(--text);line-height:1.65;min-height:100vh;font-size:15px;-webkit-font-smoothing:antialiased;}
   header{padding:14px 20px;border-bottom:1px solid var(--line);background:rgba(10,15,28,.92);
     backdrop-filter:blur(12px);position:sticky;top:0;z-index:30;}
   .htop{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
@@ -29,27 +29,45 @@
   .badge.accent{background:rgba(94,234,212,.1);border-color:var(--accent);color:var(--accent);}
   .badge.topic{background:rgba(147,197,253,.1);border-color:var(--accent-2);color:var(--accent-2);}
   .badge.written{background:rgba(251,191,36,.1);border-color:var(--warn);color:var(--warn);}
+  .badge.purple{background:rgba(196,181,253,.1);border-color:var(--purple);color:var(--purple);}
   .sub{color:var(--muted);font-size:12px;margin-top:3px;}
   .progress-wrap{margin-top:9px;background:var(--panel);border:1px solid var(--line);border-radius:999px;height:6px;overflow:hidden;}
   .progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--accent-glow),var(--accent-2));
     transition:width .5s cubic-bezier(.4,0,.2,1);box-shadow:0 0 12px rgba(94,234,212,.5);}
-  .layout{display:grid;grid-template-columns:230px 1fr;min-height:calc(100vh - 92px);}
+  .layout{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 92px);}
   nav{border-right:1px solid var(--line);padding:12px 8px 60px;background:rgba(14,20,38,.5);
     position:sticky;top:92px;height:calc(100vh - 92px);overflow-y:auto;}
-  .nav-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding:10px 8px 4px;}
+  .nav-section{margin:14px 0 4px;padding:8px 10px 6px;font-size:11px;text-transform:uppercase;letter-spacing:.12em;
+    color:var(--accent);font-weight:700;border-top:1px solid var(--line);display:flex;align-items:center;gap:8px;}
+  .nav-section:first-child{border-top:0;margin-top:0;}
+  .nav-section.purple{color:var(--purple);}
+  .nav-section.accent2{color:var(--accent-2);}
   nav a{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text-dim);
-    padding:6px 8px;border-radius:7px;font-size:13px;transition:all .12s ease;}
+    padding:6px 10px;border-radius:7px;font-size:13px;transition:all .12s ease;}
   nav a:hover{background:var(--panel);color:var(--text);}
+  nav a .num{color:var(--muted);font-size:11px;flex-shrink:0;width:30px;}
+  nav a .topic{color:var(--text-dim);font-size:11px;display:block;}
   .qdot{width:7px;height:7px;border-radius:50%;background:var(--line-strong);flex-shrink:0;}
   .qdot.done{background:var(--good);box-shadow:0 0 6px var(--good);}
   .qdot.wrong{background:var(--bad);}
   .qdot.seen{background:var(--warn);}
-  main{padding:24px 28px 120px;max-width:880px;}
-  .intro h2{font-size:25px;margin:0 0 8px;background:linear-gradient(90deg,var(--text),var(--accent));
+  main{padding:24px 28px 120px;max-width:900px;}
+
+  .section-hero{margin:30px 0 18px;padding:24px;border:1px solid var(--line);border-radius:16px;
+    background:linear-gradient(135deg,var(--panel) 0%,var(--panel-2) 100%);}
+  .section-hero.topic{border-left:5px solid var(--purple);}
+  .section-hero.quiz{border-left:5px solid var(--accent);}
+  .section-hero h2{margin:0 0 6px;font-size:24px;}
+  .section-hero p{margin:0;color:var(--text-dim);}
+
+  h2{font-size:24px;margin:0 0 8px;background:linear-gradient(90deg,var(--text),var(--accent));
     -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0;box-shadow:var(--shadow);}
+  h3{margin:20px 0 10px;font-size:18px;font-weight:600;color:var(--accent-2);}
+  h4{margin:14px 0 6px;font-size:14px;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;font-weight:700;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:14px 0;box-shadow:var(--shadow);}
   .card.tip{background:rgba(147,197,253,.06);border-left:3px solid var(--accent-2);}
   .card.warn{background:rgba(251,191,36,.06);border-left:3px solid var(--warn);}
+  .card.key{background:rgba(94,234,212,.06);border-left:3px solid var(--accent);}
   pre{background:#04081a;border:1px solid var(--line);padding:13px 15px;border-radius:8px;overflow-x:auto;
     white-space:pre;line-height:1.5;font-family:"JetBrains Mono","SF Mono",Monaco,monospace;font-size:12.5px;}
   code{background:#04081a;padding:2px 7px;border-radius:4px;color:var(--accent);
@@ -59,8 +77,13 @@
   th{background:var(--panel-2);color:var(--accent);font-weight:600;}
   .matrix td,.matrix th{text-align:center;width:30px;font-family:monospace;padding:5px;}
 
-  .qcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:18px 0;
-    box-shadow:var(--shadow);scroll-margin-top:110px;}
+  .topic-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 26px;margin:16px 0;
+    box-shadow:var(--shadow);scroll-margin-top:110px;border-left:4px solid var(--purple);}
+  .topic-card h2{font-size:22px;}
+  .topic-card .topic-meta{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px;}
+
+  .qcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:18px 0;
+    box-shadow:var(--shadow);scroll-margin-top:110px;border-left:4px solid var(--accent);}
   .qhead{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
   .qnum{background:var(--accent);color:#052621;font-weight:700;padding:3px 11px;border-radius:7px;font-size:13px;}
   .qpts{color:var(--muted);font-size:12px;}
@@ -71,6 +94,9 @@
     display:flex;align-items:center;gap:7px;margin-bottom:8px;}
   .concept p{margin:6px 0;color:var(--text-dim);font-size:14px;}
   .concept p:first-of-type{margin-top:0;}
+  .concept .topic-link{display:inline-block;margin-top:8px;font-size:12px;color:var(--accent-2);text-decoration:none;
+    background:var(--panel-2);padding:4px 10px;border-radius:6px;border:1px solid var(--line);}
+  .concept .topic-link:hover{border-color:var(--accent-2);}
 
   .qprompt{background:var(--bg-2);border:1px solid var(--line-strong);border-radius:8px;padding:14px 16px;margin:10px 0;}
   .qprompt .qlab{color:var(--accent);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.08em;
@@ -100,6 +126,15 @@
   .feedback.good .lab{color:var(--good);}
   .feedback.bad .lab{color:var(--bad);}
 
+  .write-area{margin-top:14px;}
+  .write-area-label{font-size:12px;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+  .write-area textarea{width:100%;min-height:140px;padding:12px 14px;background:#04081a;border:1px solid var(--line);
+    border-radius:8px;color:var(--text);font-family:"JetBrains Mono","SF Mono",Monaco,monospace;font-size:13px;
+    line-height:1.55;resize:vertical;outline:none;transition:border-color .15s ease;}
+  .write-area textarea:focus{border-color:var(--accent);}
+  .write-area .saved-tag{color:var(--good);font-size:11px;margin-left:6px;opacity:0;transition:opacity .25s ease;}
+  .write-area .saved-tag.show{opacity:1;}
+
   .solve{margin-top:12px;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
   .solve-toggle{background:var(--panel-2);border:0;color:var(--text);width:100%;text-align:left;padding:11px 16px;
     cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;display:flex;align-items:center;gap:8px;}
@@ -108,7 +143,8 @@
   .solve-body.show{display:block;animation:fade .3s ease;}
   .solve-body ol{margin:0;padding-left:20px;}
   .solve-body li{margin:6px 0;}
-  .solve-body .ans{color:var(--good);font-weight:600;margin-top:8px;}
+  .solve-body .ans{color:var(--good);font-weight:600;margin-top:10px;padding:8px 12px;background:rgba(74,222,128,.08);
+    border-left:3px solid var(--good);border-radius:6px;}
 
   .qactions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
   .qbtn{background:transparent;border:1px solid var(--line);color:var(--text-dim);padding:5px 12px;border-radius:6px;
@@ -116,22 +152,23 @@
   .qbtn:hover{border-color:var(--accent-2);color:var(--text);}
 
   ul,ol{padding-left:22px;margin:8px 0;}
-  li{margin:4px 0;color:var(--text-dim);}
+  li{margin:5px 0;color:var(--text-dim);}
   p{margin:8px 0;color:var(--text-dim);}
   b,strong{color:var(--text);}
   .footer-note{color:var(--muted);font-size:12px;margin-top:30px;padding-top:16px;border-top:1px solid var(--line);text-align:center;}
   .scrim{display:none;}
+  .anchor-top{position:relative;top:-92px;visibility:hidden;}
   @media(max-width:820px){
     .menu-btn{display:block;}
     .layout{grid-template-columns:1fr;}
-    nav{position:fixed;top:0;left:0;bottom:0;width:260px;height:100vh;z-index:40;
+    nav{position:fixed;top:0;left:0;bottom:0;width:280px;height:100vh;z-index:40;
       transform:translateX(-100%);transition:transform .25s ease;border-right:1px solid var(--line);
       background:#0c1326;padding-top:20px;}
     nav.open{transform:translateX(0);}
     .scrim.show{display:block;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:35;}
     main{padding:18px 16px 100px;}
-    .qcard{padding:16px;}
-    .intro h2{font-size:21px;}
+    .qcard,.topic-card{padding:16px;}
+    .section-hero{padding:18px;}
   }
 </style>
 </head>
@@ -139,10 +176,10 @@
 <header>
   <div class="htop">
     <button class="menu-btn" onclick="toggleNav()">☰</button>
-    <h1>Practice Quiz 3 — Learn Every Question</h1>
+    <h1>CSC 331 — Topic Guide & Practice Quiz 3</h1>
     <span class="badge accent" id="score">0 / 0</span>
   </div>
-  <div class="sub">Each question teaches the concept first, then asks it. Works offline — no internet needed.</div>
+  <div class="sub">Two sections: 📚 Topic Guide (learn the topics) · 🎯 Quiz Tutor (33 questions). Works offline anywhere.</div>
   <div class="progress-wrap"><div class="progress-bar" id="bar"></div></div>
 </header>
 
@@ -153,16 +190,695 @@
 </div>
 
 <script>
-/* Each question: concept (teach from zero) -> prompt -> answer -> worked solution */
+/* =========================================================================
+   TOPIC GUIDE — full topical lessons (separate from quiz tutor)
+   ========================================================================= */
+const TOPICS = [
+{id:"recursion", title:"1. Recursion", icon:"♻️", body:`
+<p>A <b>recursive function</b> is one that calls itself with a simpler version of the same problem. Recursion is how almost every tree and graph algorithm is written, so getting comfortable with it is essential.</p>
+
+<h3>The two ingredients</h3>
+<ul>
+  <li><b>Base case</b> — the simplest input that returns an answer directly, without recursing. Without a base case, the function calls itself forever and crashes (stack overflow).</li>
+  <li><b>Recursive case</b> — calls itself with a smaller / closer-to-base input, then combines the result.</li>
+</ul>
+<p>Every recursive function you write must clearly have both. Ask yourself: "What input is so simple I can answer immediately?" — that's your base case.</p>
+
+<h3>Tracing recursion by hand</h3>
+<p>To trace, write the arguments at each call, line by line, indented to show the depth. When you hit the base case, write the return value, then "unwind" — each parent call uses the returned value to compute its own return.</p>
+<pre>int fact(int n) {
+  if (n == 0) return 1;          // base case
+  return n * fact(n - 1);         // recursive case
+}
+
+// Tracing fact(4):
+fact(4)
+  fact(3)
+    fact(2)
+      fact(1)
+        fact(0) -> return 1
+      return 1 * 1 = 1
+    return 2 * 1 = 2
+  return 3 * 2 = 6
+return 4 * 6 = 24</pre>
+
+<h3>The "test(x,y)" function (Q11)</h3>
+<p>Two arguments march toward each other (x grows, y shrinks). They either meet (x==y → return x) or cross (x&gt;y → return x+y). To trace, just list the (x,y) pairs.</p>
+
+<h3>Recursive functions on linked structures (BSTs, linked lists)</h3>
+<p>The pattern is always the same — base case checks for NULL, recursive case processes the current node and recurses on children/next.</p>
+<pre>void printAll(Node *p) {
+  if (p == NULL) return;          // base case
+  printAll(p-&gt;left);              // recurse left
+  cout &lt;&lt; p-&gt;value;               // process current
+  printAll(p-&gt;right);             // recurse right
+}</pre>
+<p>Changing the order of those three lines gives you pre/in/post-order — see Tree Traversals.</p>
+
+<div class="card key"><b>Trap:</b> recursion ≠ iteration. Every recursive function uses stack memory proportional to its depth. For a tree with n nodes, depth can be log n (balanced) or n (skewed). Deep recursion can overflow.</div>
+`},
+
+{id:"bigO", title:"2. Big-O & Complexity", icon:"📊", body:`
+<p><b>Big-O notation</b> describes how an algorithm's running time grows as input size n grows. It's a worst-case upper bound, ignoring constants and slower-growing terms.</p>
+
+<h3>Simplification rules</h3>
+<ol>
+  <li>Drop multiplicative constants: O(5n) → O(n).</li>
+  <li>Drop slower-growing terms: O(n² + n) → O(n²).</li>
+  <li>The dominant term wins as n gets large.</li>
+</ol>
+
+<h3>The growth hierarchy</h3>
+<p class="formula">O(1) &lt; O(log n) &lt; O(n) &lt; O(n log n) &lt; O(n²) &lt; O(n³) &lt; O(2ⁿ) &lt; O(n!)</p>
+<p>At n = 1000: O(log n) ≈ 10, O(n) = 1000, O(n log n) ≈ 10,000, O(n²) = 1,000,000.</p>
+
+<h3>Common algorithm costs</h3>
+<table>
+  <thead><tr><th>Algorithm</th><th>Time</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr><td>Linear search</td><td>O(n)</td><td>Worst case touches everything</td></tr>
+    <tr><td>Binary search</td><td>O(log n)</td><td>Halves the search space each step</td></tr>
+    <tr><td>Heap push / pop</td><td>O(log n)</td><td>Bubble up/down ≤ height = log n</td></tr>
+    <tr><td>Heap build from array</td><td>O(n)</td><td>Bottom-up heapify is tight</td></tr>
+    <tr><td>BST search / insert (avg)</td><td>O(log n)</td><td>If balanced, the height is log n</td></tr>
+    <tr><td>BST worst case</td><td>O(n)</td><td>Degenerate (sorted insertion) becomes a line</td></tr>
+    <tr><td>AVL ops</td><td>O(log n)</td><td>Self-balancing keeps height log n</td></tr>
+    <tr><td>Mergesort</td><td>O(n log n)</td><td>log n levels × n work per level</td></tr>
+    <tr><td>BFS / DFS</td><td>O(V + E)</td><td>Every vertex once, every edge once</td></tr>
+    <tr><td>Prim's (matrix)</td><td>O(V²)</td><td>V passes, each scans all V vertices</td></tr>
+  </tbody>
+</table>
+
+<h3>Worked example</h3>
+<p>Simplify <code>f(p) = 2p(12 log p) + 5p² + 45p</code>:</p>
+<ol>
+  <li>Expand: 24p log p + 5p² + 45p.</li>
+  <li>Compare growth: p² &gt; p log p &gt; p.</li>
+  <li>Keep the dominant term: 5p² → drop constant → <b>O(p²)</b>.</li>
+</ol>
+`},
+
+{id:"trees", title:"3. Binary Trees & Traversals", icon:"🌳", body:`
+<p>A <b>binary tree</b> is a hierarchical structure where each node has at most two children, called <b>left</b> and <b>right</b>. A <b>traversal</b> is a systematic way to visit every node exactly once.</p>
+
+<h3>The four traversal orders</h3>
+<table>
+  <thead><tr><th>Order</th><th>Pattern</th><th>Memory hook</th></tr></thead>
+  <tbody>
+    <tr><td><b>Pre-order</b></td><td>Node → Left → Right</td><td>Root comes "pre" (before) children</td></tr>
+    <tr><td><b>In-order</b></td><td>Left → Node → Right</td><td>Node is "in" the middle</td></tr>
+    <tr><td><b>Post-order</b></td><td>Left → Right → Node</td><td>Root comes "post" (after) children</td></tr>
+    <tr><td><b>BFS / level-order</b></td><td>Layer 1, then 2, then 3 ...</td><td>Top to bottom, left to right</td></tr>
+  </tbody>
+</table>
+
+<h3>Recursive templates</h3>
+<pre>void preorder(Node *p) {
+  if (p == NULL) return;
+  visit(p);                  // ← move this line
+  preorder(p-&gt;left);
+  preorder(p-&gt;right);
+}
+
+void inorder(Node *p) {
+  if (p == NULL) return;
+  inorder(p-&gt;left);
+  visit(p);                  // ← move this line
+  inorder(p-&gt;right);
+}
+
+void postorder(Node *p) {
+  if (p == NULL) return;
+  postorder(p-&gt;left);
+  postorder(p-&gt;right);
+  visit(p);                  // ← move this line
+}</pre>
+<p>The <i>only</i> difference is when <code>visit(p)</code> appears.</p>
+
+<h3>BFS / level-order uses a queue</h3>
+<pre>void bfs(Node *root) {
+  Queue q;  q.enqueue(root);
+  while (!q.empty()) {
+    Node *n = q.dequeue();
+    visit(n);
+    if (n-&gt;left)  q.enqueue(n-&gt;left);
+    if (n-&gt;right) q.enqueue(n-&gt;right);
+  }
+}</pre>
+
+<h3>Worked example</h3>
+<pre>          8
+         / \\
+        4   12
+       /\\   /\\
+      2 6  10 14</pre>
+<ul>
+  <li><b>Pre-order</b>: 8, 4, 2, 6, 12, 10, 14</li>
+  <li><b>In-order</b>: 2, 4, 6, 8, 10, 12, 14 ← sorted (because this is a BST)</li>
+  <li><b>Post-order</b>: 2, 6, 4, 10, 14, 12, 8</li>
+  <li><b>BFS</b>: 8, 4, 12, 2, 6, 10, 14</li>
+</ul>
+
+<div class="card key"><b>Powerful fact:</b> in-order traversal of a BST always produces values in <b>sorted ascending order</b>. This is a free way to print a BST sorted.</div>
+
+<h3>Tree layer math</h3>
+<p>If layer 1 is the root (1 node), layer L holds at most <b>2^(L-1)</b> nodes. A tree of height h has at most <b>2^h − 1</b> total nodes.</p>
+<p>Sizes: layer 1=1, 2=2, 3=4, <b>4=8</b>, 5=16, 6=32, ...</p>
+`},
+
+{id:"bst", title:"4. Binary Search Trees (BST)", icon:"🔍", body:`
+<p>A <b>BST</b> is a binary tree with one extra rule: at every node, <b>everything in the left subtree is smaller, everything in the right subtree is larger</b>. This makes search, insert, and delete O(height).</p>
+
+<h3>Insertion procedure</h3>
+<ol>
+  <li>If the tree is empty, the new key becomes the root.</li>
+  <li>Otherwise, start at the root. Compare new key vs current.</li>
+  <li>Smaller → go left. Larger → go right.</li>
+  <li>If the spot you'd go to is empty, place the new node there. Otherwise, repeat step 2 at that child.</li>
+</ol>
+
+<h3>String comparison</h3>
+<p>Strings compare alphabetically by ASCII. Capital letters (A-Z = 65-90) come before lowercase (a-z = 97-122). Digits (0-9 = 48-57) come before all letters.</p>
+<p>So: 'A' &lt; 'B' &lt; ... &lt; 'Z' &lt; 'a' &lt; ... &lt; 'z'. And "Ask" &lt; "Dav" &lt; "Lin" &lt; "Md" &lt; "Ter" &lt; "Toy".</p>
+
+<h3>Worked example — Toy, Lin, Md, Ter, Ask</h3>
+<ol>
+  <li><b>Toy</b>: empty tree → root.</li>
+  <li><b>Lin</b>: Lin &lt; Toy → left child of Toy.</li>
+  <li><b>Md</b>: Md &lt; Toy → left to Lin. Md &gt; Lin → right child of Lin.</li>
+  <li><b>Ter</b>: Ter &lt; Toy → left to Lin. Ter &gt; Lin → right to Md. Ter &gt; Md → right child of Md.</li>
+  <li><b>Ask</b>: Ask &lt; Toy → left to Lin. Ask &lt; Lin → left child of Lin.</li>
+</ol>
+<pre>          Toy
+         /
+       Lin
+      /   \\
+    Ask    Md
+             \\
+             Ter</pre>
+
+<h3>Properties</h3>
+<ul>
+  <li><b>Search/insert</b>: O(h), where h is the height. Best case: log n (balanced). Worst case: n (degenerate).</li>
+  <li><b>In-order traversal</b>: outputs sorted ascending.</li>
+  <li><b>Degenerate</b>: inserting already-sorted keys creates a "linked list" — the worst-case shape.</li>
+</ul>
+
+<div class="card warn"><b>Trap:</b> a plain (unbalanced) BST never rotates. The first key inserted is the root and stays the root. Contrast with AVL.</div>
+`},
+
+{id:"avl", title:"5. AVL Trees & Rotations", icon:"⚖️", body:`
+<p>An <b>AVL tree</b> is a BST that keeps itself balanced. After each insert/delete it checks the <b>balance factor</b> at each node. If imbalance is detected, a <b>rotation</b> restores balance.</p>
+
+<h3>Balance factor (BF)</h3>
+<p class="formula">BF(node) = height(left subtree) − height(right subtree)</p>
+<ul>
+  <li><b>BF = 0</b>: subtrees are equal height. Balanced.</li>
+  <li><b>BF = +1</b>: left is one level deeper. Still OK.</li>
+  <li><b>BF = −1</b>: right is one level deeper. Still OK.</li>
+  <li><b>BF = ±2</b>: imbalance — must rotate.</li>
+</ul>
+<p><b>Heights:</b> a single leaf has height 1. An empty subtree has height 0. (Some textbooks use leaf=0 / empty=−1 — both are equivalent for subtraction.)</p>
+
+<h3>The four rotation types</h3>
+<table>
+  <thead><tr><th>Pattern</th><th>Fix</th><th>When it happens</th></tr></thead>
+  <tbody>
+    <tr><td><b>LL</b> (left-left)</td><td>Single <b>right</b> rotate</td><td>Insertion landed in the left-left grandchild</td></tr>
+    <tr><td><b>RR</b> (right-right)</td><td>Single <b>left</b> rotate</td><td>Insertion landed in the right-right grandchild</td></tr>
+    <tr><td><b>LR</b> (left-right)</td><td><b>Left-right</b> (double)</td><td>Insertion landed in the left-right grandchild</td></tr>
+    <tr><td><b>RL</b> (right-left)</td><td><b>Right-left</b> (double)</td><td>Insertion landed in the right-left grandchild</td></tr>
+  </tbody>
+</table>
+<p><b>How to read the pattern:</b> at the unbalanced node, ask "which side is heavy?" That's the first letter. Then go to that heavy child and ask "which side is heavy?" That's the second letter.</p>
+
+<h3>Worked example — LR rotation</h3>
+<p>Insert Toy, Lin, Md into an empty AVL:</p>
+<ol>
+  <li>Toy → root.</li>
+  <li>Lin &lt; Toy → left of Toy.</li>
+  <li>Md &lt; Toy → left to Lin. Md &gt; Lin → right of Lin. Now Toy's BF = 2 (left has Lin→Md, height 2; right empty, height 0). Imbalance.</li>
+  <li>The imbalance is Toy(<b>L</b>)eft → Lin(<b>R</b>)ight → LR rotation.</li>
+  <li>LR: first left-rotate Lin (Md becomes parent of Lin), then right-rotate Toy.</li>
+</ol>
+<pre>   Toy           Toy           Md
+   /             /             /  \\
+  Lin    →     Md     →     Lin   Toy
+    \\          /
+    Md       Lin</pre>
+<p><b>After</b>: Md is the new root. Lin is its left child. Toy is its right child.</p>
+
+<div class="card warn"><b>Trap:</b> rotations can change <b>which node is the root</b>. So when a question asks "what's the parent of X?" in an AVL tree, you must trace through all rotations.</div>
+`},
+
+{id:"heaps", title:"6. Heaps", icon:"🗻", body:`
+<p>A <b>heap</b> is a <b>complete binary tree</b> (filled level by level, left to right) where each parent satisfies an ordering rule with its children:</p>
+<ul>
+  <li><b>Max-heap</b>: parent ≥ both children. Root is the maximum.</li>
+  <li><b>Min-heap</b>: parent ≤ both children. Root is the minimum.</li>
+</ul>
+
+<h3>Array representation</h3>
+<p>Heaps are stored as arrays. For a node at index <code>i</code> (1-indexed):</p>
+<ul>
+  <li>Left child: index <code>2i</code></li>
+  <li>Right child: index <code>2i + 1</code></li>
+  <li>Parent: index <code>⌊i/2⌋</code></li>
+</ul>
+
+<h3>Operations and their costs</h3>
+<table>
+  <thead><tr><th>Op</th><th>Cost</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td>peek (top)</td><td>O(1)</td><td>Return root</td></tr>
+    <tr><td>push (insert)</td><td><b>O(log n)</b></td><td>Append at bottom, bubble up</td></tr>
+    <tr><td>pop (remove root)</td><td>O(log n)</td><td>Swap root with last, remove last, sift down</td></tr>
+    <tr><td>build from array</td><td>O(n)</td><td>Bottom-up heapify (tight bound)</td></tr>
+    <tr><td>heapsort</td><td>O(n log n)</td><td>Build heap then pop all n elements</td></tr>
+  </tbody>
+</table>
+
+<h3>Counting leaves</h3>
+<p>In a complete heap of n nodes:</p>
+<ul>
+  <li>Internal nodes: indices 1 through ⌊n/2⌋.</li>
+  <li>Leaves: indices ⌊n/2⌋+1 through n.</li>
+  <li><b>Leaf count = ⌈n/2⌉</b> — about half the nodes.</li>
+</ul>
+<p>Examples: n=20 → leaves=10. n=15 → leaves=8. n=7 → leaves=4.</p>
+
+<h3>Identifying a heap from a figure</h3>
+<ol>
+  <li>Check <b>shape</b>: filled level by level, left to right. If shape is wrong, it's not a heap.</li>
+  <li>Check <b>order</b>: every parent ≤ children (min) or ≥ children (max).</li>
+  <li>If both hold → heap. If just order without complete shape → just a binary tree.</li>
+</ol>
+
+<h3>String keys in heaps</h3>
+<p>For string keys, comparison is by ASCII. Digits ('0'-'9') &lt; uppercase ('A'-'Z') &lt; lowercase ('a'-'z'). So '4b' &lt; '5g' &lt; 'D9' &lt; 'Q3' &lt; 'a6'.</p>
+`},
+
+{id:"graphs", title:"7. Graph Representations", icon:"🔗", body:`
+<p>A graph G = (V, E) has vertices V and edges E. Two common ways to store it:</p>
+
+<h3>Adjacency matrix</h3>
+<p>A 2D V×V array. <code>weights[i][j]</code> = weight of edge i–j (or just 1/0 for unweighted). Blank, 0, or 999 (sentinel) = "no edge."</p>
+<table class="matrix">
+  <tr><th></th><th>A</th><th>B</th><th>C</th></tr>
+  <tr><th>A</th><td>—</td><td>4</td><td>8</td></tr>
+  <tr><th>B</th><td>4</td><td>—</td><td>6</td></tr>
+  <tr><th>C</th><td>8</td><td>6</td><td>—</td></tr>
+</table>
+<ul>
+  <li>Space: O(V²) — wasteful if the graph is sparse.</li>
+  <li>Edge lookup: O(1).</li>
+  <li>For <b>undirected</b> graphs the matrix is symmetric.</li>
+  <li>For <b>directed</b> graphs it isn't — <code>m[i][j]</code> means edge i→j only.</li>
+</ul>
+
+<h3>Adjacency list</h3>
+<p>An array of V linked lists (or vectors). Entry <code>list[i]</code> contains all neighbors of vertex i.</p>
+<pre>[0] → 1 → 5
+[1] → 2 → 3 → 5
+[2] → 4
+[3] → 4
+[4] → (none)</pre>
+<ul>
+  <li>Space: O(V + E) — much better for sparse graphs.</li>
+  <li>Iterating neighbors of v: O(deg(v)).</li>
+  <li>Checking if a specific edge exists: O(deg(v)) — slower than matrix.</li>
+</ul>
+
+<h3>Directed vs undirected</h3>
+<p>An edge in a directed graph is an arrow with a direction. <b>0→1</b> means you can travel from 0 to 1, not back. A node with only outgoing arrows (no incoming) is a "source" and can be unreachable from elsewhere.</p>
+`},
+
+{id:"bfs", title:"8. BFS (Breadth-First Search)", icon:"🌊", body:`
+<p><b>BFS</b> explores a graph <b>layer by layer</b> — all neighbors of the start, then all their neighbors, and so on. It uses a <b>queue</b> (FIFO).</p>
+
+<h3>Algorithm</h3>
+<pre>BFS(start):
+  mark start visited
+  enqueue start
+  while queue not empty:
+    v = dequeue
+    output v
+    for each neighbor w of v (in order):
+      if w not visited:
+        mark w visited
+        enqueue w</pre>
+
+<h3>Properties</h3>
+<ul>
+  <li>Visits nodes in order of <b>distance</b> (number of edges) from the start.</li>
+  <li>On unweighted graphs, gives <b>shortest path</b> in number of edges.</li>
+  <li>Time: O(V + E). Space: up to O(V) for the queue.</li>
+</ul>
+
+<h3>Worked example (undirected)</h3>
+<pre>Adjacency list:
+[0] → 1 → 5
+[1] → 2 → 3 → 5
+[2] → 4
+[3] → 4
+[5] → 6
+[6] → 8
+[8] → 10
+
+BFS from 0, level by level:
+  Lvl 0: 0
+  Lvl 1: 1, 5
+  Lvl 2: 2, 3 (from 1), 6 (from 5)
+  Lvl 3: 4 (from 2), 8 (from 6)
+  Lvl 4: 10 (from 8)
+
+Output: 0, 1, 5, 2, 3, 6, 4, 8, 10</pre>
+
+<div class="card warn"><b>Directed-graph trap:</b> on a directed graph, you can only follow arrows in their direction. A node with no incoming arrows is <b>unreachable</b> from other vertices. If you start BFS at 0 and node 4 is a source (only outgoing), 4 won't appear in the traversal.</div>
+`},
+
+{id:"dfs", title:"9. DFS (Depth-First Search)", icon:"🕳️", body:`
+<p><b>DFS</b> explores as <b>deep as possible</b> before backtracking. It uses a <b>stack</b> (or equivalently, the function call stack via recursion).</p>
+
+<h3>Recursive version</h3>
+<pre>DFS(v):
+  if visited[v]: return
+  mark v visited
+  output v
+  for each neighbor w of v (in order):
+    DFS(w)</pre>
+
+<h3>Iterative with stack</h3>
+<pre>push start
+while stack not empty:
+  v = pop
+  if visited[v]: continue
+  mark v visited; output v
+  for each neighbor w of v (reverse order for consistent results):
+    if not visited: push w</pre>
+
+<h3>Worked example</h3>
+<pre>Same adjacency list as BFS example.
+
+DFS from 0:
+  visit 0 → go to 1
+  visit 1 → go to 2
+  visit 2 → go to 4 → dead end, backtrack
+  back at 1, next neighbor 3 → 4 (visited, dead end)
+  back at 1, next 5 → 6 → 8 → 10
+
+Output: 0, 1, 2, 4, 3, 5, 6, 8, 10</pre>
+
+<h3>Properties & uses</h3>
+<ul>
+  <li>Time: O(V + E). Space: O(depth) for the call stack.</li>
+  <li>Used for: cycle detection, topological sort, finding connected components.</li>
+  <li>Does NOT find shortest paths (use BFS).</li>
+</ul>
+
+<h3>The "start vs full traversal" distinction</h3>
+<p>"DFS starting at v" visits only nodes reachable from v. A "full DFS of the graph" iterates over all vertices: if some are still unvisited after DFS from the first, restart DFS from them. This produces a forest of DFS trees, one per source.</p>
+`},
+
+{id:"topo", title:"10. Topological Sort", icon:"📐", body:`
+<p>A <b>topological sort</b> is a linear ordering of the vertices of a DAG (directed acyclic graph) such that for every directed edge u → v, vertex u appears before vertex v in the ordering.</p>
+
+<h3>When it works</h3>
+<ul>
+  <li>Only works on a <b>DAG</b> (no cycles). With a cycle, no valid order exists.</li>
+  <li><b>Not unique</b>: most graphs have many valid orderings.</li>
+  <li>Used for scheduling tasks with dependencies, course prerequisites, build order.</li>
+</ul>
+
+<h3>Kahn's algorithm (BFS-style)</h3>
+<ol>
+  <li>Compute in-degree (count of incoming edges) for every vertex.</li>
+  <li>Put all vertices with in-degree 0 in a queue.</li>
+  <li>While queue not empty:
+    <ul>
+      <li>Dequeue v, output v.</li>
+      <li>For each edge v → w, decrement w's in-degree. If it hits 0, enqueue w.</li>
+    </ul>
+  </li>
+  <li>If output has fewer than V vertices, the graph has a cycle.</li>
+</ol>
+
+<h3>DFS-based</h3>
+<ol>
+  <li>Run DFS on the graph.</li>
+  <li>Whenever DFS <b>finishes</b> with a vertex (just before backtracking from it), push it onto a stack.</li>
+  <li>At the end, pop the stack — that's a topological order.</li>
+</ol>
+
+<h3>Worked example (Kahn's)</h3>
+<pre>Adjacency list:
+[0] → 1, 5
+[1] → 2, 3, 5
+[2] → 4
+[3] → 4
+[5] → 6
+[6] → 8
+[7] → 3, 8
+[8] → 10
+[9] → 4, 7, 10
+
+In-degrees:
+0: 0 (source)
+1: 1 (from 0)
+2: 1 (from 1)
+3: 2 (from 1, 7)
+4: 3 (from 2, 3, 9)
+5: 2 (from 0, 1)
+6: 1 (from 5)
+7: 1 (from 9)
+8: 2 (from 6, 7)
+9: 0 (source)
+10: 2 (from 8, 9)
+
+Sources: 0, 9.
+
+One valid topological order: 0, 9, 1, 7, 2, 3, 5, 4, 6, 8, 10</pre>
+`},
+
+{id:"prim", title:"11. Prim's MST", icon:"🌐", body:`
+<p>A <b>spanning tree</b> of a connected graph is a subset of edges that connects every vertex with no cycles. It always has exactly <b>V − 1 edges</b>. A <b>minimum spanning tree (MST)</b> is the spanning tree with smallest total weight.</p>
+
+<h3>Prim's algorithm</h3>
+<ol>
+  <li>Pick a starting vertex. Add it to the "tree set" T.</li>
+  <li>Look at all edges with <b>one endpoint in T, one outside</b>.</li>
+  <li>Pick the <b>cheapest</b> such edge. Add its outside endpoint to T.</li>
+  <li>Repeat until T contains all V vertices (you'll add V − 1 edges total).</li>
+</ol>
+<p><b>Key rule:</b> never add an edge whose both endpoints are already in T — that would create a cycle.</p>
+
+<h3>Why it works (the "cut property")</h3>
+<p>For any cut (split of vertices into "in T" and "out of T"), the cheapest edge crossing the cut is in <b>some</b> MST. Prim's repeatedly picks that edge, so it always produces an MST.</p>
+
+<h3>Worked example</h3>
+<p>Edges (weights): A-C=4, A-D=8, A-F=1, B-D=6, B-F=5, C-E=3, D-E=7, E-F=2. Start at A.</p>
+<ol>
+  <li>T={A}. Candidates from A: A-C(4), A-D(8), A-F(1). Pick <b>A-F (1)</b>. T={A,F}.</li>
+  <li>Candidates: A-C(4), A-D(8), F-B(5), F-E(2). Pick <b>F-E (2)</b>. T={A,F,E}.</li>
+  <li>Candidates: A-C(4), A-D(8), F-B(5), E-C(3), E-D(7). Pick <b>E-C (3)</b>. T={A,F,E,C}.</li>
+  <li>Candidates: A-D(8), F-B(5), E-D(7). Pick <b>F-B (5)</b>. T={A,F,E,C,B}.</li>
+  <li>Candidates: A-D(8), B-D(6), E-D(7). Pick <b>B-D (6)</b>. T={A,F,E,C,B,D}. Done — 5 edges = V−1.</li>
+</ol>
+
+<h3>Reading an adjacency matrix for Prim's</h3>
+<p>At each step, scan all rows of vertices in T, look in columns of vertices NOT in T, find the smallest entry. That's your next edge.</p>
+
+<h3>Complexity</h3>
+<ul>
+  <li>With adjacency matrix: O(V²).</li>
+  <li>With priority queue + adjacency list: O((V + E) log V).</li>
+</ul>
+`},
+
+{id:"hashing", title:"12. Hashing & Linear Probing", icon:"🔢", body:`
+<p>A <b>hash table</b> is an array where each item's position is computed from a <b>hash function</b> applied to the key. Lookup/insert/delete average O(1) — much faster than searching a list.</p>
+
+<h3>The basic idea</h3>
+<p>To insert key k:</p>
+<ol>
+  <li>Compute the home slot: <code>h = key mod tableSize</code>.</li>
+  <li>If slot h is empty, place k there.</li>
+  <li>If slot h is occupied (a <b>collision</b>), resolve it with a probing strategy.</li>
+</ol>
+
+<h3>Linear probing</h3>
+<p>The simplest collision resolution: try the next slot, then the next, wrapping around.</p>
+<pre>i = 0
+while table[(h + i) mod size] is occupied:
+  i = i + 1
+place key at table[(h + i) mod size]</pre>
+
+<h3>Worked example</h3>
+<p>Table size 7. Hash function h(x) = x % 7. Current state: slot 0=657, slot 5=150, slot 6=843, others empty. Insert ID 712.</p>
+<ol>
+  <li>h(712) = 712 mod 7 = 5 (since 7 × 101 = 707, remainder 5).</li>
+  <li>Slot 5 is occupied (150) → probe.</li>
+  <li>Slot 6: 843, taken.</li>
+  <li>Slot 0 (wrap): 657, taken.</li>
+  <li>Slot 1: empty → <b>place 712 in slot 1</b>.</li>
+</ol>
+
+<h3>Other collision strategies (for context)</h3>
+<ul>
+  <li><b>Quadratic probing</b>: try (h + 1²), (h + 2²), (h + 3²), ... — spreads collisions further.</li>
+  <li><b>Double hashing</b>: step size determined by a second hash function.</li>
+  <li><b>Separate chaining</b>: each slot is the head of a linked list of all keys that hashed there.</li>
+</ul>
+
+<h3>Load factor & resizing</h3>
+<p>Load factor = n / size. When it exceeds ~0.7, performance degrades. Production hash tables resize (double the array, rehash all keys) to keep the load factor low.</p>
+`},
+
+{id:"mergesort", title:"13. Mergesort", icon:"🪓", body:`
+<p><b>Mergesort</b> is a classic divide-and-conquer sorting algorithm with guaranteed O(n log n) running time.</p>
+
+<h3>The algorithm</h3>
+<ol>
+  <li>If the list has 0 or 1 elements, it's already sorted (base case).</li>
+  <li>Split the list in half.</li>
+  <li>Recursively mergesort the left half.</li>
+  <li>Recursively mergesort the right half.</li>
+  <li><b>Merge</b> the two sorted halves into one sorted list.</li>
+</ol>
+
+<h3>The merge step</h3>
+<p>To merge two sorted lists L and R: use two pointers, compare the front elements, take the smaller, advance that pointer. Repeat until one list is empty, then append the rest.</p>
+
+<h3>Calls vs merges — read questions carefully</h3>
+<p>A "call" is one invocation of mergesort (the splitting phase). A "merge" is one combine step. They are <b>different</b>!</p>
+
+<h3>The recursion tree</h3>
+<p>For input [Lin, Md, Ter, Ask, Dav, Jen, Gen, Gab]:</p>
+<pre>Call 1: [Lin,Md,Ter,Ask,Dav,Jen,Gen,Gab]   (whole list)
+  Call 2: [Lin,Md,Ter,Ask]                  (left half)
+    Call 3: [Lin,Md]                         (left of left)
+      Call 4: [Lin]                          (base)
+      Call 5: [Md]                           (base)
+    Call 6: [Ter,Ask]                        (right of [Lin,Md,Ter,Ask])
+      Call 7: [Ter]                          (base)
+      Call 8: [Ask]                          (base)
+  Call 9: [Dav,Jen,Gen,Gab]                  (right half)
+  ...</pre>
+<p>Mergesort completes the entire LEFT branch before touching the right — that's standard recursion order.</p>
+
+<h3>The merge sequence (bottom up)</h3>
+<p>Pairs at the bottom merge first:</p>
+<ol>
+  <li>1st merge: (Lin, Md) → (Lin, Md)</li>
+  <li>2nd merge: (Ter, Ask) → (Ask, Ter)</li>
+  <li>3rd merge: (Lin, Md) + (Ask, Ter) → (Ask, Lin, Md, Ter)</li>
+  <li>... and so on for the right half, finally combining the two 4-lists.</li>
+</ol>
+
+<h3>Complexity</h3>
+<ul>
+  <li>Time: O(n log n) — log n levels of recursion, n work per level.</li>
+  <li>Space: O(n) — needs a buffer for merging.</li>
+  <li><b>Stable</b>: preserves relative order of equal keys.</li>
+</ul>
+`},
+
+{id:"exprtree", title:"14. Expression Trees", icon:"➗", body:`
+<p>An <b>expression tree</b> represents an arithmetic expression visually. <b>Internal nodes</b> are operators (+, −, ×, /). <b>Leaves</b> are operands (numbers or variables).</p>
+
+<h3>Three notations</h3>
+<table>
+  <thead><tr><th>Notation</th><th>Traversal</th><th>Example</th></tr></thead>
+  <tbody>
+    <tr><td>Prefix (Polish)</td><td>Pre-order</td><td>+ a b</td></tr>
+    <tr><td>Infix (normal)</td><td>In-order + parens</td><td>(a + b)</td></tr>
+    <tr><td>Postfix (RPN)</td><td>Post-order</td><td>a b +</td></tr>
+  </tbody>
+</table>
+
+<h3>Worked example</h3>
+<pre>      −
+     / \\
+    16   /
+        / \\
+       2   5
+
+This tree means: 16 − (2 / 5)</pre>
+<ul>
+  <li><b>Postfix</b> (Left, Right, Root): 16 2 5 / −</li>
+  <li><b>Infix</b>: (16 − (2 / 5))</li>
+  <li><b>Prefix</b>: − 16 / 2 5</li>
+</ul>
+
+<h3>Operand order matters</h3>
+<p>For non-commutative operators (− and /), the <b>left child is the first operand</b>, the <b>right child is the second</b>. So a "/" with children (2, 5) means 2/5, not 5/2.</p>
+
+<h3>Evaluating postfix with a stack</h3>
+<ol>
+  <li>Scan tokens left to right.</li>
+  <li>Number → push onto stack.</li>
+  <li>Operator → pop two values (right operand first, then left), apply op, push result.</li>
+  <li>End: stack's only remaining value is the answer.</li>
+</ol>
+<p>Postfix needs no parentheses — the tree structure makes precedence explicit.</p>
+`},
+
+{id:"subgraph", title:"15. Subgraphs & Connectivity", icon:"⛓️", body:`
+<p>A <b>subgraph</b> of G = (V, E) is any graph G' = (V', E') where:</p>
+<ul>
+  <li>V' ⊆ V (a subset of the original vertices)</li>
+  <li>E' ⊆ E (a subset of the original edges)</li>
+  <li>Every edge in E' must have <b>both endpoints in V'</b> (you can't keep an edge if you removed one of its endpoints)</li>
+  <li>You can't invent new edges that weren't in the original graph</li>
+</ul>
+
+<h3>Common subgraph types</h3>
+<ul>
+  <li><b>Induced subgraph</b>: keep some vertices, keep all edges between them.</li>
+  <li><b>Spanning subgraph</b>: keep all vertices, drop some edges.</li>
+  <li><b>Spanning tree</b>: spanning + connected + no cycles.</li>
+</ul>
+
+<h3>Connected vs disconnected</h3>
+<ul>
+  <li>A graph is <b>connected</b> if there's a path between every pair of vertices.</li>
+  <li>A <b>component</b> is a maximal connected subgraph.</li>
+  <li>A graph with multiple components is a <b>forest</b> (if each component is acyclic) or a <b>disconnected graph</b>.</li>
+</ul>
+
+<h3>Tree vs forest</h3>
+<p>A <b>tree</b> requires:</p>
+<ol>
+  <li>Connected (one piece).</li>
+  <li>No cycles.</li>
+  <li>Exactly V − 1 edges.</li>
+</ol>
+<p>If edges form two or more separate clumps, it's a <b>forest</b>, not a tree.</p>
+
+<h3>Worked example</h3>
+<p>Edges (a,c), (d,e), (d,f), (f,g). Component 1: {a, c}. Component 2: {d, e, f, g}. Two pieces → forest, not a single tree.</p>
+`}
+];
+
+/* =========================================================================
+   QUIZ TUTOR — 33 questions with concept, prompt, write area, solve
+   ========================================================================= */
 const QS = [
-{n:1, topic:"Graph code", pts:9, type:"written",
+{n:1, topic:"Graph code", topicId:"prim", pts:9, type:"written",
  concept:`<p><b>What's an adjacency matrix?</b> A graph is a set of vertices (nodes) connected by edges. One way to store it is a 2-D grid called an <b>adjacency matrix</b>: <code>weights[i][j]</code> holds the weight of the edge between vertex i and vertex j. If there's no edge, the cell holds a special "sentinel" value — here that's <b>999</b>.</p>
- <p><b>Row vs column.</b> A <b>row</b> is one vertex's edges across all others (fix i, vary j). A <b>column</b> is the reverse (fix j, vary i). This question wants you to walk down ONE column.</p>
- <p><b>Average = sum ÷ count.</b> You add up the real values (ignore the 999s), count how many you added, then divide.</p>`,
+ <p><b>Row vs column.</b> A <b>row</b> is one vertex's edges across all others (fix i, vary j). A <b>column</b> is the reverse (fix j, vary i). This question wants you to walk down ONE column — meaning j is locked to the argument <code>col</code>, and i sweeps every row.</p>
+ <p><b>Average = sum ÷ count.</b> You add up the real values (ignoring 999s), count how many you added, then divide. Guard against divide-by-zero in case every cell in the column is 999.</p>
+ <p><b>The given class:</b> the matrix is stored as <code>double **weights</code> (a 2D dynamic array) and the size is in <code>gSize</code>. You'll access cells as <code>weights[row][col]</code>.</p>`,
  text:"From the Malik <code>graphType</code> class, code a C++ method that finds and returns the <b>average of all values not equal to 999</b> in a <b>specific column</b> of the adjacency matrix. The column number is passed as an argument.",
- fig:`private:
+ fig:`class graphType {
+public:
+  void minimumSpanning(int sVertex);
+  ...
+private:
   int gSize;          // number of vertices
-  double **weights;   // the adjacency matrix`,
+  double **weights;   // the adjacency matrix
+  ...
+};`,
  model:`<pre>double graphType::columnAverage(int col) {
   double sum = 0;
   int count = 0;
@@ -175,11 +891,14 @@ const QS = [
   if (count == 0) return 0;            // avoid divide-by-zero
   return sum / count;
 }</pre>
-<b>Why this works:</b> <code>col</code> stays fixed (it's the argument), and <code>i</code> sweeps every row, so you touch every cell in that one column. You only add and count cells that aren't the 999 sentinel, then divide sum by count.`},
+<b>Why this works:</b> <code>col</code> stays fixed (the argument), and <code>i</code> sweeps every row, so every cell in that column gets examined. Only real weights (≠ 999) contribute to the sum and count. Final answer is sum ÷ count.<br><br>
+<b>Common variant:</b> if asked for a ROW average instead, swap the indices: <code>weights[row][j]</code> with j as the loop variable and row as the fixed argument.`},
 
-{n:2, topic:"Hashing", pts:4, type:"mcq",
- concept:`<p><b>What's a hash table?</b> It's an array where each item's position is computed from the item itself using a <b>hash function</b>. Here the function is <code>h(x) = x % 7</code> (the remainder after dividing by 7), so every ID lands in slot 0–6.</p>
- <p><b>Collision.</b> When two items hash to the same slot, that's a collision. <b>Linear probing</b> resolves it by checking the next slot, then the next, wrapping around to 0 after 6, until it finds an empty one.</p>`,
+{n:2, topic:"Hashing", topicId:"hashing", pts:4, type:"mcq",
+ concept:`<p><b>What's a hash table?</b> An array where each item's position is computed from the item itself using a <b>hash function</b>. Here the function is <code>h(x) = x % 7</code> (the remainder after dividing by 7), so every ID lands somewhere in slots 0–6.</p>
+ <p><b>What's a collision?</b> When two items hash to the same slot. The table can only hold one value per slot, so we need a strategy when the home slot is taken.</p>
+ <p><b>Linear probing</b> resolves it by checking the next slot, then the next, wrapping from 6 back to 0, until it finds an empty one. The new item lives in the first empty slot you find.</p>
+ <p><b>Step by step:</b> compute h(x) → if empty, drop it in → else go to (h+1) mod size → keep going until empty.</p>`,
  text:"Identify the slot for new employee ID <b>712</b> using <code>h(x)=x%7</code> with <b>linear probing</b>.",
  figHTML:`<table style="max-width:200px"><tr><th>Slot</th><th>Value</th></tr>
    <tr><td>0</td><td>657</td></tr><tr><td>1</td><td>—</td></tr><tr><td>2</td><td>—</td></tr>
@@ -195,10 +914,11 @@ const QS = [
  </ol><div class="ans">Answer: slot 1</div>`,
  expl:`712 % 7 = 5, but slot 5 is taken (150). Probe 6 (843), 0 (657), then 1 (empty). <b>Lands in slot 1.</b>`},
 
-{n:3, topic:"Recursion code", pts:9, type:"written",
- concept:`<p><b>What's a BST?</b> A Binary Search Tree keeps keys ordered: everything in a node's <b>left</b> subtree is smaller, everything in its <b>right</b> subtree is larger.</p>
- <p><b>The magic of in-order traversal.</b> If you visit Left → Node → Right recursively, a BST spits out its keys in <b>sorted order</b>. That's exactly what "in name order" means here.</p>
- <p><b>Recursion needs a base case.</b> When the pointer is NULL (empty), do nothing and return — that stops the recursion.</p>`,
+{n:3, topic:"Recursion code", topicId:"bst", pts:9, type:"written",
+ concept:`<p><b>What's a BST?</b> A Binary Search Tree keeps keys ordered: everything in a node's <b>left</b> subtree is smaller, everything in its <b>right</b> subtree is larger. Smaller-than checks always go left.</p>
+ <p><b>The magic of in-order traversal.</b> If you visit Left → Node → Right recursively, a BST spits out its keys in <b>sorted order</b>. That's exactly what "in name order" means here — alphabetical.</p>
+ <p><b>Recursion structure.</b> Three things, in order: recurse into left subtree, print the current node, recurse into right subtree. Base case = pointer is NULL (do nothing, return).</p>
+ <p><b>"All names" means no filter.</b> Unlike a "listSeniors" variant that only prints when age &gt; 64, this function prints every single node. Don't add an unneeded if-check.</p>`,
  text:"Given a BST where <code>name</code> is the key, write a recursive function <code>listRegister</code> that displays <b>all names and ages in name order</b>, each on its own line. One parameter: pointer to the root.",
  fig:`struct recType {
   string name;
@@ -208,17 +928,19 @@ const QS = [
 };`,
  model:`<pre>void listRegister(recType *p) {
   if (p != NULL) {
-    listRegister(p-&gt;lChild);                 // 1. smaller names first
-    cout &lt;&lt; p-&gt;name &lt;&lt; " " &lt;&lt; p-&gt;age &lt;&lt; endl; // 2. this node
-    listRegister(p-&gt;rChild);                 // 3. larger names
+    listRegister(p-&gt;lChild);                  // 1. smaller names first
+    cout &lt;&lt; p-&gt;name &lt;&lt; " " &lt;&lt; p-&gt;age &lt;&lt; endl;  // 2. this node
+    listRegister(p-&gt;rChild);                  // 3. larger names
   }
 }</pre>
-<b>Why:</b> this is a textbook <b>in-order</b> traversal. Left-subtree (all alphabetically-earlier names) prints first, then the current node, then the right subtree. Because it's a BST, that produces alphabetical order. There's no age filter, so every node prints.`},
+<b>Why:</b> this is a textbook <b>in-order</b> traversal (left, visit, right). Because it's a BST, left subtree holds alphabetically earlier names — printing them first gives sorted output. The if-check is the base case: when p is NULL, we've gone past a leaf, so do nothing.<br><br>
+<b>Variant — listSeniors (age &gt; 64):</b> wrap the print in <code>if (p-&gt;age &gt; 64) { ... }</code> while still recursing on both children. The order stays in-order.`},
 
-{n:4, topic:"Prim's MST", pts:4, type:"mcq",
+{n:4, topic:"Prim's MST", topicId:"prim", pts:4, type:"mcq",
  concept:`<p><b>Spanning tree.</b> Given a connected graph, a spanning tree picks just enough edges to connect every vertex with no cycles — always exactly V−1 edges. The <b>minimum</b> spanning tree (MST) is the cheapest such set.</p>
  <p><b>Prim's algorithm</b> grows the tree one vertex at a time. Start at a vertex; repeatedly add the <b>cheapest edge that connects a vertex already in the tree to one not yet in it</b>. Never add an edge between two vertices already inside (that'd make a cycle).</p>
- <p><b>Reading the matrix.</b> The number at row X, column Y is the weight of edge X–Y. Blank = no edge.</p>`,
+ <p><b>How to read the matrix.</b> The number at row X, column Y is the weight of edge X–Y. Blank = no edge. For an undirected graph the matrix is symmetric, so you can read either triangle.</p>
+ <p><b>How to track Prim's manually.</b> Keep a list of edges leaving the current tree (one endpoint in, one out). Pick the smallest, add the new endpoint, update the list (remove edges that now have both endpoints in T; add edges from the new endpoint to outside vertices).</p>`,
  text:"Using <b>Prim's MST</b> starting at node <b>E</b>, identify the <b>4th edge collected</b>.",
  figHTML:`<table class="matrix"><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr>
    <tr><th>A</th><td></td><td></td><td>4</td><td>8</td><td></td><td>1</td></tr>
@@ -230,17 +952,19 @@ const QS = [
  options:["AC","AD","AF","BD","BF","CE","DE","EF"],
  correct:4,
  solve:`<ol>
-   <li>Start: tree = {E}. E's edges: E-C=3, E-D=7, E-F=2. Cheapest = <b>E-F (2)</b>. → 1st edge EF. Tree={E,F}.</li>
-   <li>Edges leaving the tree now: E-C=3, E-D=7, F-A=1, F-B=5. Cheapest = <b>F-A (1)</b>. → 2nd edge AF. Tree={E,F,A}.</li>
-   <li>Now: E-C=3, E-D=7, F-B=5, A-C=4, A-D=8. Cheapest = <b>E-C (3)</b>. → 3rd edge CE. Tree={E,F,A,C}.</li>
-   <li>Now: A-D=8, E-D=7, F-B=5 (C adds nothing new). Cheapest = <b>F-B (5)</b>. → 4th edge BF.</li>
+   <li><b>Start:</b> tree = {E}. E's edges: E-C=3, E-D=7, E-F=2. Cheapest = <b>E-F (2)</b>. → 1st edge EF. Tree={E,F}.</li>
+   <li>Now look at edges leaving {E,F}: E-C=3, E-D=7, F-A=1, F-B=5. Cheapest = <b>F-A (1)</b>. → 2nd edge AF. Tree={E,F,A}.</li>
+   <li>Now leaving {E,F,A}: E-C=3, E-D=7, F-B=5, A-C=4, A-D=8. Cheapest = <b>E-C (3)</b>. → 3rd edge CE. Tree={E,F,A,C}.</li>
+   <li>Now leaving {E,F,A,C}: A-D=8, E-D=7, F-B=5. (C only connects to A and E, both inside.) Cheapest = <b>F-B (5)</b>. → 4th edge BF.</li>
  </ol><div class="ans">Answer: BF</div>`,
- expl:`Order of edges from E: EF(2), AF(1), CE(3), then <b>BF(5)</b> is the 4th.`},
+ expl:`Order from E: EF(2), AF(1), CE(3), then <b>BF(5)</b> is the 4th.`},
 
-{n:5, topic:"Topological sort", pts:7, type:"written",
+{n:5, topic:"Topological sort", topicId:"topo", pts:7, type:"written",
  concept:`<p><b>Directed graph.</b> Edges have arrows — 0→1 means you can go from 0 to 1, not back. An <b>adjacency list</b> shows, for each vertex, the list of vertices it points to.</p>
  <p><b>Topological order.</b> A linear listing of all vertices so that every arrow points "forward" — if u→v, then u comes before v. It only works on a DAG (no cycles).</p>
- <p><b>How to find one (Kahn's method):</b> repeatedly pick any vertex with <b>no incoming arrows</b> (in-degree 0), output it, remove its outgoing arrows, and repeat. Several valid answers usually exist.</p>`,
+ <p><b>Kahn's method:</b> repeatedly pick a vertex with <b>no incoming arrows</b> (in-degree 0), output it, remove its outgoing arrows from the graph, and repeat. The remaining graph keeps having in-degree-0 vertices appear as you peel layers off.</p>
+ <p><b>To find sources quickly:</b> scan every list — any vertex that never appears as a destination has in-degree 0.</p>
+ <p><b>Not unique:</b> several valid orderings usually exist. The grader accepts any answer where every arrow points forward.</p>`,
  text:"Given the adjacency list, show a <b>topological ordering</b> of the vertices.",
  fig:`[0] → 1 → 5
 [1] → 2 → 3 → 5
@@ -253,12 +977,22 @@ const QS = [
 [8] → 10
 [9] → 4 → 7 → 10
 [10] → (none)`,
- model:`<b>One valid order: 0, 9, 1, 7, 2, 3, 5, 4, 6, 8, 10</b><br><br>
-<b>How:</b> The only vertices with no incoming arrows are <b>0</b> and <b>9</b>, so one of them must start. Output 0, then 9, then keep removing whichever vertex now has nothing pointing into it. Any ordering that respects all arrow directions is correct — this is not unique.`},
+ model:`<b>One valid order:</b> 0, 9, 1, 7, 2, 3, 5, 4, 6, 8, 10<br><br>
+<b>How to get there:</b>
+<ol>
+  <li>In-degrees: 0=0, 9=0 (sources), 1=1 (from 0), 7=1 (from 9), 5=2 (from 0,1), 2=1, 3=2 (from 1,7), 4=3 (from 2,3,9), 6=1, 8=2 (from 6,7), 10=2 (from 8,9).</li>
+  <li>Sources first: pick 0 → remove its arrows. 1 now in-degree 0, 5 now in-degree 1.</li>
+  <li>Pick 9 → 7 becomes 0, 4 becomes 2, 10 becomes 1.</li>
+  <li>Pick 1 → 2 becomes 0, 3 becomes 1, 5 becomes 0.</li>
+  <li>Continue: 7 → 3 becomes 0, 8 becomes 1.</li>
+  <li>Pick 2 → 4 becomes 1. Pick 3 → 4 becomes 0. Pick 5 → 6 becomes 0. Pick 4 (no outgoing). Pick 6 → 8 becomes 0. Pick 8 → 10 becomes 0. Pick 10.</li>
+</ol>
+Other valid answers exist — any ordering respecting all arrow directions is correct.`},
 
-{n:6, topic:"Topological sort", pts:7, type:"written",
- concept:`<p>Same idea as the previous question. A <b>topological order</b> lists vertices so every directed edge points forward. Find a vertex with <b>in-degree 0</b> (no arrows into it), output it, delete its out-arrows, repeat.</p>
- <p><b>Tip:</b> compute each vertex's in-degree first by scanning who points to it. Sources (in-degree 0) are your starting candidates.</p>`,
+{n:6, topic:"Topological sort", topicId:"topo", pts:7, type:"written",
+ concept:`<p>Same idea as Q5. A <b>topological order</b> lists vertices so every directed edge points forward. The procedure: find an in-degree-0 vertex, output it, delete its outgoing arrows, repeat.</p>
+ <p><b>Tip for the exam:</b> draw the graph if helpful, mark in-degrees, then peel off vertices one at a time. Cross out arrows as you remove them.</p>
+ <p>Two common approaches: <b>Kahn's (BFS-style)</b> uses a queue of in-degree-0 vertices. <b>DFS-based</b> pushes vertices onto a stack as DFS finishes them, then pops the stack.</p>`,
  text:"Given the adjacency list, show a <b>topological ordering</b> of the vertices.",
  fig:`[0] → 1 → 5
 [1] → 2 → 3 → 5
@@ -271,12 +1005,14 @@ const QS = [
 [8] → 10
 [9] → 4 → 7 → 10
 [10] → (none)`,
- model:`<b>One valid order: 0, 1, 2, 5, 6, 9, 7, 3, 4, 8, 10</b><br><br>
-Start from the in-degree-0 vertices (0 and 9). As long as every edge u→v has u before v, your answer counts. Topological orderings are not unique.`},
+ model:`<b>One valid order:</b> 0, 1, 2, 5, 6, 9, 7, 3, 4, 8, 10<br><br>
+Start from the in-degree-0 vertices (0 and 9). As long as every edge u→v has u before v, your answer counts. Topological orderings are not unique — pick any valid one.`},
 
-{n:7, topic:"DFS", pts:7, type:"written",
- concept:`<p><b>Depth-First Search (DFS)</b> explores as <b>deep</b> as possible before backing up. From a node, follow its first neighbor, then that node's first neighbor, and so on. When you hit a dead end, <b>backtrack</b> to the last node with an unexplored neighbor.</p>
- <p>It uses a <b>stack</b> (or recursion — the call stack IS the stack). Visit neighbors in the order they appear in the list.</p>`,
+{n:7, topic:"DFS", topicId:"dfs", pts:7, type:"written",
+ concept:`<p><b>Depth-First Search (DFS)</b> explores as <b>deep</b> as possible before backing up. From a node, follow its first neighbor in the list, then that node's first neighbor, and so on. When you hit a dead end (already-visited or no neighbors), <b>backtrack</b> to the last node with an unexplored neighbor.</p>
+ <p>It uses a <b>stack</b> (or recursion — the call stack IS the stack). Visit neighbors in the order they appear in the adjacency list.</p>
+ <p><b>How to write it manually:</b> follow the leftmost path until stuck, then back up one step and try the next neighbor. Repeat until you've exhausted all reachable nodes.</p>
+ <p><b>Reachability:</b> on a directed graph, you can only follow arrows in their direction. Some nodes may be unreachable from the start vertex.</p>`,
  text:"Show the order of vertices in a <b>depth-first traversal</b> starting at node 0.",
  fig:`[0] → 1 → 5
 [1] → 2 → 3 → 5
@@ -289,12 +1025,25 @@ Start from the in-degree-0 vertices (0 and 9). As long as every edge u→v has u
 [8] → 10
 [9] → 4 → 7 → 10
 [10] → (none)`,
- model:`<b>Answer: 0, 1, 2, 4, 3, 5, 6, 8, 10</b><br><br>
-<b>Trace:</b> 0→1→2→4 (dead end, back up) → back at 1, next is 3→4 (already visited, back up) → back at 1, next is 5→6→8→10. Vertices 7 and 9 are never reached from 0.`},
+ model:`<b>Answer:</b> 0, 1, 2, 4, 3, 5, 6, 8, 10<br><br>
+<b>Trace:</b>
+<ol>
+  <li>Visit 0. Neighbors: 1, 5. Go to <b>1</b>.</li>
+  <li>Visit 1. Neighbors: 2, 3, 5. Go to <b>2</b>.</li>
+  <li>Visit 2. Neighbor: 4. Go to <b>4</b>.</li>
+  <li>Visit 4. No neighbors. Back up to 2 (done) → back to 1.</li>
+  <li>At 1, next neighbor 3. Go to <b>3</b>.</li>
+  <li>Visit 3. Neighbor: 4 (already visited). Back to 1.</li>
+  <li>At 1, next neighbor 5. Go to <b>5</b>.</li>
+  <li>Visit 5. Neighbor: 6. Go to <b>6</b>. Then <b>8</b>. Then <b>10</b>.</li>
+</ol>
+Vertices 7 and 9 are never reached from 0 — they're in a separate part of the graph.`},
 
-{n:8, topic:"BFS", pts:7, type:"written",
- concept:`<p><b>Breadth-First Search (BFS)</b> explores <b>level by level</b> — all the immediate neighbors first, then their neighbors, and so on, like ripples spreading out.</p>
- <p>It uses a <b>queue</b> (first-in, first-out): enqueue the start, then repeatedly dequeue a vertex, output it, and enqueue its unvisited neighbors.</p>`,
+{n:8, topic:"BFS", topicId:"bfs", pts:7, type:"written",
+ concept:`<p><b>Breadth-First Search (BFS)</b> explores <b>level by level</b> — all the immediate neighbors first, then their neighbors, and so on, like ripples spreading out from the start.</p>
+ <p>It uses a <b>queue</b> (FIFO — first in, first out): enqueue the start, then repeatedly dequeue a vertex, output it, and enqueue its unvisited neighbors.</p>
+ <p><b>To trace by hand:</b> write the queue contents at each step, and write the output as nodes get dequeued. Mark vertices as visited the moment you enqueue them (not when you dequeue) to avoid duplicate enqueues.</p>
+ <p><b>BFS property:</b> on an unweighted graph, BFS visits vertices in order of distance from the start (in number of edges).</p>`,
  text:"Show the order of vertices in a <b>breadth-first traversal</b> starting at node 0.",
  fig:`[0] → 1 → 5
 [1] → 2 → 3 → 5
@@ -307,25 +1056,37 @@ Start from the in-degree-0 vertices (0 and 9). As long as every edge u→v has u
 [8] → 10
 [9] → 4 → 7 → 10
 [10] → (none)`,
- model:`<b>Answer: 0, 1, 5, 2, 3, 6, 4, 8, 10</b><br><br>
-<b>Trace by level:</b> Level 0 = {0}. Level 1 = neighbors of 0 = {1, 5}. Level 2 = {2, 3} (from 1) and {6} (from 5). Level 3 = {4} (from 2) and {8} (from 6). Level 4 = {10} (from 8). Vertices 7 and 9 are unreachable from 0.`},
+ model:`<b>Answer:</b> 0, 1, 5, 2, 3, 6, 4, 8, 10<br><br>
+<b>Trace by level:</b>
+<ul>
+  <li>Level 0 = {0}.</li>
+  <li>Level 1 = neighbors of 0 = {1, 5}.</li>
+  <li>Level 2 = {2, 3} (from 1) and {6} (from 5).</li>
+  <li>Level 3 = {4} (from 2) and {8} (from 6). (4 from 3 is already queued.)</li>
+  <li>Level 4 = {10} (from 8).</li>
+</ul>
+Output: 0, then level 1, then level 2, then level 3, then level 4 → <b>0, 1, 5, 2, 3, 6, 4, 8, 10</b>. Vertices 7, 9 unreachable from 0.`},
 
-{n:9, topic:"Mergesort", pts:4, type:"written",
+{n:9, topic:"Mergesort", topicId:"mergesort", pts:4, type:"written",
  concept:`<p><b>Mergesort</b> is divide-and-conquer. It keeps <b>splitting</b> the list in half until each piece has one element, then <b>merges</b> the pieces back together in sorted order.</p>
- <p><b>Calls vs merges — read the question carefully!</b> A "call" happens every time mergesort is invoked on a sublist (the splitting phase). A "merge" happens when two sorted halves recombine. This question asks about <b>calls</b>. The order of calls follows the recursion: do the whole LEFT half before touching the right.</p>`,
+ <p><b>Calls vs merges — read the question carefully!</b> A "call" happens every time mergesort is invoked on a sublist (the splitting phase). A "merge" happens when two sorted halves recombine. They're <i>different</i> things.</p>
+ <p><b>The order of calls.</b> The recursion explores the LEFT branch completely before touching the right. Inside the left branch, it again does left fully before right. Trace it like a pre-order traversal of the recursion tree.</p>
+ <p><b>For a list of 8</b>: call 1 = whole list. Call 2 = left half (4 elements). Call 3 = left of left half (2 elements). Call 4 = the single element on the left. Call 5 = the single element on the right. Call 6 = the right half of the left half (which is the 2-element list "Ter, Ask" in our case).</p>`,
  text:"8 values sorted by recursive Mergesort: <b>Lin, Md, Ter, Ask, Dav, Jen, Gen, Gab</b>. The 1st call gets the whole list. Show the list passed to the <b>6th call</b>.",
  fig:`Call 1: [Lin,Md,Ter,Ask,Dav,Jen,Gen,Gab]   (whole list)
 Call 2: [Lin,Md,Ter,Ask]                     (left half)
 Call 3: [Lin,Md]                              (left of left)
-Call 4: [Lin]                                 (base case)
-Call 5: [Md]                                  (base case)
-Call 6: [ ?, ? ]`,
+Call 4: [Lin]                                 (base case — size 1)
+Call 5: [Md]                                  (base case — size 1)
+Call 6: [ ?, ? ]                              (the right half of [Lin,Md,Ter,Ask])`,
  model:`<b>Answer: (Ter, Ask)</b><br><br>
-<b>Why:</b> mergesort finishes the entire left branch before starting any right branch. Calls 1–5 drill all the way down the left side ([Lin,Md] into [Lin] and [Md]). Once that branch is done, the next call is the <b>right half of [Lin,Md,Ter,Ask]</b> — which is <b>[Ter, Ask]</b>. (They're not sorted yet; the question asks what's <i>passed in</i>.)`},
+<b>Why:</b> Mergesort finishes the entire left branch before starting any right branch. Calls 1–5 drill all the way down the left side of [Lin,Md,Ter,Ask], reaching base cases [Lin] and [Md]. Once that side returns, the next call is mergesort on the <b>right half of [Lin,Md,Ter,Ask]</b>, which is <b>[Ter, Ask]</b>. (They're not sorted yet — the question asks what's <i>passed in</i> to the call.)`},
 
-{n:10, topic:"AVL tree", pts:4, type:"written",
- concept:`<p><b>AVL tree</b> = a BST that fixes itself when it gets lopsided. After each insert it checks the <b>balance factor</b> (height of left minus height of right) at each node; if it ever hits ±2, it does a <b>rotation</b> to rebalance.</p>
- <p><b>Key insight for this question:</b> a rotation can change which node is the <b>root</b>. So "the parent of X" depends on the tree's shape <i>after</i> rotations, not the raw insert order.</p>`,
+{n:10, topic:"AVL tree", topicId:"avl", pts:4, type:"written",
+ concept:`<p><b>AVL tree</b> = a BST that fixes itself when it gets lopsided. After each insert it checks the <b>balance factor</b> (height of left minus height of right) at each node. If it ever hits ±2, it does a <b>rotation</b> to rebalance.</p>
+ <p><b>Key insight for this question:</b> a rotation can change which node is the <b>root</b>. So "the parent of X" depends on the tree's shape <i>after</i> rotations, not the raw insert order.</p>
+ <p><b>The LR case</b> (left child, then right grandchild): first do a left rotation at the left child, then a right rotation at the unbalanced node. After this double rotation, the middle node (the one inserted that caused the imbalance) ends up at the top of that subtree.</p>
+ <p><b>Trace the insertions one at a time</b>, redrawing the tree after each rotation. Don't try to do it in your head — write it out.</p>`,
  text:"An <b>AVL tree</b> is built from these keys in order: <b>Toy, Lin, Md, Ter, Ask</b>. What is the key of the <b>parent of the node containing Md</b>?",
  fig:`Insert Toy, then Lin (left of Toy), then Md.
 Md unbalances Toy → "Left-Right" case → LR rotation:
@@ -338,9 +1099,14 @@ Md unbalances Toy → "Left-Right" case → LR rotation:
  model:`<b>Answer: Md is the root — it has no parent.</b><br><br>
 <b>Why:</b> inserting Md makes Toy's balance factor ±2 (Toy → Lin → Md is a left-then-right zig-zag), triggering an <b>LR rotation</b> that promotes Md to the root, with Lin and Toy as its children. Later inserts (Ter, Ask) hang below and don't move Md. A root has no parent. (If a value is required, write "none" or "root".)`},
 
-{n:11, topic:"Recursion", pts:4, type:"mcq",
+{n:11, topic:"Recursion", topicId:"recursion", pts:4, type:"mcq",
  concept:`<p><b>Tracing recursion</b> means following the calls by hand. Each call either hits a <b>base case</b> (returns immediately) or makes another call with new arguments. Write out the arguments at each step until a base case fires, then carry the return value back up.</p>
- <p>Here the function moves x up by 1 and y down by 1 each time, so they march toward each other.</p>`,
+ <p>Here the function moves x up by 1 and y down by 1 each time, so they march toward each other. Two outcomes possible:</p>
+ <ul>
+   <li><b>x == y:</b> they met. Return x.</li>
+   <li><b>x &gt; y:</b> they crossed. Return x + y.</li>
+ </ul>
+ <p><b>Shortcut:</b> if the gap (y − x) is <b>even</b>, they meet exactly in the middle → return (x+y)/2. If the gap is <b>odd</b>, they pass each other one step apart → return x + y at the crossing step. For test(1,13): gap = 12 (even) → answer = (1+13)/2 = 7.</p>`,
  text:"Show the output of <code>cout &lt;&lt; test(1,13)</code>.",
  fig:`int test(int x, int y) {
   if (x == y)     return x;
@@ -357,26 +1123,29 @@ Md unbalances Toy → "Left-Right" case → LR rotation:
    <li>(5,9): → test(6,8)</li>
    <li>(6,8): → test(7,7)</li>
    <li>(7,7): x == y → return <b>7</b></li>
- </ol><div class="ans">Answer: 7 &nbsp;(shortcut: the gap 13−1=12 is even, so they meet at the midpoint (1+13)/2 = 7)</div>`,
+ </ol><div class="ans">Answer: 7 &nbsp;(shortcut: even gap 12 → meet at (1+13)/2 = 7)</div>`,
  expl:`x climbs, y drops, meeting at (7,7) → returns 7.`},
 
-{n:12, topic:"Heaps", pts:2, type:"mcq",
- concept:`<p><b>Heap</b> = a complete binary tree stored in an array, where each parent is ≥ its children (max-heap) or ≤ them (min-heap).</p>
- <p><b>Push</b> adds the new value at the bottom and "bubbles it up," swapping with its parent while it's out of order. The number of swaps can't exceed the tree's <b>height</b>, and a complete binary tree of n nodes has height about log₂ n.</p>`,
+{n:12, topic:"Heaps", topicId:"heaps", pts:2, type:"mcq",
+ concept:`<p><b>Heap</b> = a complete binary tree (filled level by level, left to right) where each parent is ≥ its children (max-heap) or ≤ them (min-heap).</p>
+ <p><b>Push</b> (a.k.a. insert) adds the new value at the bottom of the tree (the first open spot) and "bubbles it up" by swapping with its parent while it's out of order.</p>
+ <p><b>Why O(log n)?</b> The number of swaps can't exceed the tree's height. A complete binary tree with n nodes has height about ⌊log₂ n⌋. So in the worst case you do log₂ n swaps, each O(1) → overall O(log n).</p>
+ <p>Compare to other costs: peek is O(1), pop is also O(log n) (sift down), and building a heap from an unordered array in one shot is O(n) using bottom-up heapify.</p>`,
  text:"What is the algorithmic complexity of the <b>push</b> operation for a heap with n elements?",
  options:["O(1)","O(log n)","O(n)","O(n log n)","O(n²)"],
  correct:1,
  solve:`<ol>
    <li>Push appends the element at the next open spot (the bottom of the tree).</li>
-   <li>It then swaps upward toward the root while larger than its parent.</li>
+   <li>It then swaps upward toward the root while it violates the heap property.</li>
    <li>Worst case = one swap per level = the height of the heap.</li>
    <li>Height of a complete binary tree of n nodes = ⌊log₂ n⌋.</li>
  </ol><div class="ans">Answer: O(log n)</div>`,
  expl:`Bubbling up costs at most the height of the heap, which is log n. <b>O(log n).</b>`},
 
-{n:13, topic:"Tree traversal", pts:5, type:"mcq",
+{n:13, topic:"Tree traversal", topicId:"trees", pts:5, type:"mcq",
  concept:`<p><b>Post-order traversal</b> visits a node's <b>Left</b> subtree, then its <b>Right</b> subtree, then the <b>node itself</b> last. Memory hook: "Root is POSTed last."</p>
- <p>Apply the rule recursively to every subtree — you always finish both children before printing a parent.</p>`,
+ <p>Apply the rule recursively to every subtree — you always finish both children before printing a parent. The root of the whole tree is always printed last in post-order.</p>
+ <p><b>Eliminate wrong options fast:</b> the last element must be the root (here, 8). Drop any option that doesn't end in 8.</p>`,
  text:"Identify the <b>post-order</b> traversal of the tree.",
  fig:`          8
          / \\
@@ -392,9 +1161,11 @@ Md unbalances Toy → "Left-Right" case → LR rotation:
  </ol><div class="ans">Answer: 2,6,4,10,14,12,8</div>`,
  expl:`Left, Right, Root throughout → 2,6,4,10,14,12,8.`},
 
-{n:14, topic:"BFS (directed)", pts:5, type:"mcq",
+{n:14, topic:"BFS (directed)", topicId:"bfs", pts:5, type:"mcq",
  concept:`<p><b>BFS on a directed graph.</b> Arrows matter — you can only travel in the arrow's direction. Start at node 0, visit neighbors level by level using a queue.</p>
- <p><b>Reachability trap:</b> a node with <b>no incoming arrows</b> (a "source") can never be reached from somewhere else. If you start at 0 and some node only has outgoing arrows, you'll never visit it.</p>`,
+ <p><b>Reachability trap:</b> a node with <b>no incoming arrows</b> (a "source") can never be reached from somewhere else. If you start at 0 and some node only has outgoing arrows, you'll never visit it.</p>
+ <p><b>Check node 4 specifically:</b> look at all the edges. If every arrow involving 4 points AWAY from 4 (4→5, 4→3) and nothing points INTO 4, then 4 is a source. You'll never visit it starting from 0.</p>
+ <p>By extension, if 3 is only reached by an arrow from 4 (which is unreachable), 3 is also unreachable.</p>`,
  text:"Identify the <b>breadth-first traversal</b> sequence (start at 0).",
  fig:`Edges:  0→1   0→5   5→2   2→1
         4→5   4→3   3→1   3→2
@@ -415,8 +1186,9 @@ Md unbalances Toy → "Left-Right" case → LR rotation:
  </ol><div class="ans">Answer: none of the other answers</div>`,
  expl:`Node 4 (and therefore 3) can't be reached from 0, so the real BFS is just 0,1,5,2 — not any listed option.`},
 
-{n:15, topic:"Tree traversal", pts:5, type:"mcq",
- concept:`<p><b>Post-order</b> again: Left subtree, then Right subtree, then the node. Do it recursively. Note this tree is <b>not</b> a BST (values aren't ordered), but traversal rules don't care about order — you just follow the shape.</p>`,
+{n:15, topic:"Tree traversal", topicId:"trees", pts:5, type:"mcq",
+ concept:`<p><b>Post-order</b> again: Left subtree, then Right subtree, then the node. Do it recursively. Note this tree is <b>not</b> a BST (the values aren't ordered properly), but traversal rules don't care about ordering — you just follow the tree's shape.</p>
+ <p><b>Quick check:</b> in post-order the very last element is always the root. Here root = 12, so the answer must end in 12.</p>`,
  text:"Identify the <b>post-order</b> traversal of the tree.",
  fig:`          12
          /  \\
@@ -432,8 +1204,10 @@ Md unbalances Toy → "Left-Right" case → LR rotation:
  </ol><div class="ans">Answer: 41,20,17,19,11,21,12</div>`,
  expl:`Left, Right, Root → 41,20,17,19,11,21,12.`},
 
-{n:16, topic:"DFS (directed)", pts:5, type:"mcq",
- concept:`<p><b>DFS on a directed graph.</b> Follow arrows as deep as possible, backtrack at dead ends. Same reachability rule as BFS: a node with no incoming arrows can't be reached from the start.</p>`,
+{n:16, topic:"DFS (directed)", topicId:"dfs", pts:5, type:"mcq",
+ concept:`<p><b>DFS on a directed graph.</b> Follow arrows as deep as possible, backtrack at dead ends. Same reachability rule as BFS: a node with no incoming arrows can't be reached from the start.</p>
+ <p>This is the same graph as Q14 (with the same trap). Node 4 has only outgoing arrows, so it's a source — unreachable from 0. Node 3 only gets an arrow from 4, so it's also unreachable.</p>
+ <p><b>Pattern recognition:</b> when every multiple-choice option lists all V nodes but you know some are unreachable, the correct answer is "none of the other answers."</p>`,
  text:"Identify the <b>depth-first traversal</b> sequence (start at 0).",
  fig:`Edges:  0→1   0→5   5→2   3→1   3→2
         4→5   4→3   2→1
@@ -454,8 +1228,10 @@ Md unbalances Toy → "Left-Right" case → LR rotation:
  </ol><div class="ans">Answer: none of the other answers</div>`,
  expl:`Same trap as Q14: nodes 3 and 4 are unreachable from 0, so no 6-node option works.`},
 
-{n:17, topic:"Tree traversal", pts:5, type:"mcq",
- concept:`<p><b>Pre-order traversal</b> visits the <b>node first</b>, then its Left subtree, then its Right subtree. Memory hook: "Root comes PRE (before) the children."</p>`,
+{n:17, topic:"Tree traversal", topicId:"trees", pts:5, type:"mcq",
+ concept:`<p><b>Pre-order traversal</b> visits the <b>node first</b>, then its Left subtree, then its Right subtree. Memory hook: "Root comes PRE (before) the children."</p>
+ <p><b>Quick check:</b> the very FIRST element in pre-order is always the root. Here root = 8, so the answer must start with 8.</p>
+ <p>Inside each subtree the same rule applies recursively. The left subtree of 8 (rooted at 4) is visited completely in pre-order before the right subtree (rooted at 12) is touched.</p>`,
  text:"Identify the <b>pre-order</b> traversal of the tree.",
  fig:`          8
          / \\
@@ -471,8 +1247,9 @@ Md unbalances Toy → "Left-Right" case → LR rotation:
  </ol><div class="ans">Answer: 8,4,2,6,12,10,14</div>`,
  expl:`Root, Left, Right → 8,4,2,6,12,10,14.`},
 
-{n:18, topic:"Tree traversal", pts:5, type:"mcq",
- concept:`<p><b>Pre-order</b>: node first, then Left, then Right — applied recursively. The root of the whole tree is always the very first thing printed in a pre-order list (a handy way to eliminate wrong options fast).</p>`,
+{n:18, topic:"Tree traversal", topicId:"trees", pts:5, type:"mcq",
+ concept:`<p><b>Pre-order</b>: node first, then Left, then Right — applied recursively. The root of the whole tree is always the very first thing printed in a pre-order list (a handy way to eliminate wrong options fast).</p>
+ <p>The shape of the tree matters, not the values. Even though 41 &lt; 17, that's fine — this isn't a BST. Just follow the structure.</p>`,
  text:"Identify the <b>pre-order</b> traversal of the tree.",
  fig:`          12
          /  \\
@@ -488,9 +1265,10 @@ Md unbalances Toy → "Left-Right" case → LR rotation:
  </ol><div class="ans">Answer: 12,17,41,20,21,19,11</div>`,
  expl:`Root, Left, Right → 12,17,41,20,21,19,11.`},
 
-{n:19, topic:"BST", pts:4, type:"mcq",
+{n:19, topic:"BST", topicId:"bst", pts:4, type:"mcq",
  concept:`<p><b>Plain BST insertion</b> (no balancing). The <b>first</b> key inserted becomes the root and never moves. Each later key walks down: go left if smaller, right if larger, until it finds an empty spot.</p>
- <p>"Unbalanced" just means no rotations happen — unlike an AVL tree.</p>`,
+ <p>"Unbalanced" just means no rotations happen — unlike an AVL tree where rotations can promote nodes to the root.</p>
+ <p><b>Key fact:</b> in a plain BST, the root never changes. So if the question asks for the parent of the first-inserted key, the answer is always "none" / "it's the root."</p>`,
  text:"An <b>unbalanced BST</b> is built from: <b>Toy, Lin, Md, Ter, Ask</b>. What is the key of the <b>parent of the node containing Toy</b>?",
  fig:`       Toy   ← inserted first = root
       /
@@ -508,8 +1286,10 @@ Md unbalances Toy → "Left-Right" case → LR rotation:
  </ol><div class="ans">Answer: Toy is the root — no parent</div>`,
  expl:`Toy was first in, so it's the root and has no parent. (Contrast with Q10's AVL, where rotations <i>can</i> move the root.)`},
 
-{n:20, topic:"Tree layers", pts:5, type:"mcq",
- concept:`<p><b>Binary tree layers (levels).</b> Each node can have up to 2 children, so each layer can hold at most <b>twice</b> as many nodes as the one above. With layer 1 holding 1 node, the max sizes go 1, 2, 4, 8, … — that's <b>2^(L−1)</b> for layer L.</p>`,
+{n:20, topic:"Tree layers", topicId:"trees", pts:5, type:"mcq",
+ concept:`<p><b>Binary tree layers (levels).</b> Each node can have up to 2 children, so each layer can hold at most <b>twice</b> as many nodes as the one above. With layer 1 holding 1 node, the max sizes go 1, 2, 4, 8, … — that's <b>2^(L−1)</b> for layer L.</p>
+ <p>Visual: layer 1 = root (1 node). Layer 2 = up to 2 children. Layer 3 = up to 4 grandchildren. Layer 4 = up to 8 great-grandchildren. And so on.</p>
+ <p>This applies to ANY binary tree (BST, AVL, heap, plain binary tree). It's just counting.</p>`,
  text:"If the first layer of a binary tree has one element, what is the <b>maximum number of elements in the 4th layer</b>?",
  fig:`Layer 1: 2^0 = 1
 Layer 2: 2^1 = 2
@@ -524,8 +1304,10 @@ Layer 4: 2^3 = ?`,
  </ol><div class="ans">Answer: 8</div>`,
  expl:`Max nodes in layer L = 2^(L−1); layer 4 = 2³ = 8.`},
 
-{n:21, topic:"DFS (directed)", pts:5, type:"mcq",
- concept:`<p><b>DFS</b> from a start vertex follows arrows as deep as possible, picking the smallest-numbered unvisited neighbor, and backtracks at dead ends. If a vertex is a <b>source</b> (no arrows into it) it won't be reached from the start — a full traversal then restarts there afterward to cover the whole graph.</p>`,
+{n:21, topic:"DFS (directed)", topicId:"dfs", pts:5, type:"mcq",
+ concept:`<p><b>DFS</b> from a start vertex follows arrows as deep as possible, picking the smallest-numbered unvisited neighbor, and backtracks at dead ends.</p>
+ <p>If a vertex is a <b>source</b> (no arrows into it), it won't be reached from the start. A "full traversal" then restarts DFS at that source after the first DFS finishes — that's how DFS visits every node even when some are unreachable from the chosen start.</p>
+ <p><b>The trick on this question:</b> after DFS from 1 finishes, node 3 is still unvisited (it's a source). A complete DFS restarts there, so 3 comes last in the answer.</p>`,
  text:"Choose the <b>depth-first traversal</b> order of the directed graph G₁.",
  fig:`Edges: 1→2  1→4  2→5  3→1  3→4  4→5
 
@@ -543,8 +1325,13 @@ Layer 4: 2^3 = ?`,
  </ol><div class="ans">Answer: 1 2 5 4 3</div>`,
  expl:`Deep dive 1→2→5, backtrack to 4, then the unreachable source 3 last → 1 2 5 4 3.`},
 
-{n:22, topic:"Subgraph", pts:5, type:"mcq",
- concept:`<p><b>Subgraph rule.</b> A subgraph keeps some of the original vertices (V′ ⊆ V) and some of the original edges (E′ ⊆ E), with one hard requirement: <b>every edge you keep must have both of its endpoints in V′</b>, and you can't invent edges that weren't in the original graph.</p>`,
+{n:22, topic:"Subgraph", topicId:"subgraph", pts:5, type:"mcq",
+ concept:`<p><b>Subgraph rule.</b> A subgraph keeps some of the original vertices (V′ ⊆ V) and some of the original edges (E′ ⊆ E). The hard requirement: <b>every edge you keep must have both of its endpoints in V′</b>, and you can't invent edges that weren't in the original graph.</p>
+ <p>To check each candidate: <br>
+   1. Are V′ and E′ both subsets of the originals? <br>
+   2. For every edge in E′, are both endpoints listed in V′?
+ </p>
+ <p>If any rule fails, the candidate is invalid. If <b>all four candidates</b> fail, the answer is "none of the other answers."</p>`,
  text:"Given V={a,c,d,f,h}, E={(a,c),(a,d),(d,f),(d,h)}, choose a valid <b>subgraph</b>.",
  options:["V={a,c,d} E={(a,c),(a,d),(d,f)}","V={a,c,f} E={(a,c),(a,d),(d,f)}","V={a,c,d} E={(a,c),(d,f)}","V={a,f,h} E={(a,h),(f,h)}","none of the other answers"],
  correct:4,
@@ -557,9 +1344,16 @@ Layer 4: 2^3 = ?`,
  </ol><div class="ans">Answer: none of the other answers</div>`,
  expl:`Every option keeps an edge whose endpoint is missing, or invents a new edge. None is valid.`},
 
-{n:23, topic:"AVL rotation", pts:5, type:"mcq",
+{n:23, topic:"AVL rotation", topicId:"avl", pts:5, type:"mcq",
  concept:`<p><b>Balance factor (BF)</b> = height(left) − height(right). An AVL node is "unbalanced" when |BF| = 2. To fix it you rotate, and the <b>pattern of the imbalance</b> tells you which rotation:</p>
- <p>LL → right rotate · RR → left rotate · LR → left-then-right · RL → right-then-left. Read it as "(heavy side of the unbalanced node)(heavy side of that child)."</p>`,
+ <ul>
+   <li>LL → right rotate (single)</li>
+   <li>RR → left rotate (single)</li>
+   <li>LR → left-then-right (double)</li>
+   <li>RL → right-then-left (double)</li>
+ </ul>
+ <p><b>How to read the pattern:</b> at the unbalanced node, ask "which side is heavy?" → that's the first letter. Then go to that heavy child and ask "which side is heavy?" → that's the second letter.</p>
+ <p>For this question: Fatema has BF = 2 (or −2 in some conventions, but |BF|=2 either way). Find the heavy side, then the heavy grandchild.</p>`,
  text:"Given the AVL figure (Fatema's BF = 2), choose the rotation needed.",
  fig:`          Fatema (2)
          /        \\
@@ -572,14 +1366,21 @@ Layer 4: 2^3 = ?`,
  correct:3,
  solve:`<ol>
    <li>Fatema's |BF| = 2 → it's unbalanced.</li>
-   <li>The deeper (heavier) side is the <b>Right</b> child, Howard.</li>
+   <li>The deeper (heavier) side is the <b>Right</b> child, Howard (the right subtree goes 3 deep: Howard → Grace → George).</li>
    <li>Within Howard, the heavier side is its <b>Left</b> child, Grace (which has George below it).</li>
    <li>Right-then-Left imbalance → <b>right-left rotation</b> (a double rotation).</li>
  </ol><div class="ans">Answer: right-left rotate</div>`,
  expl:`Heavy on Howard (right), then Grace (left) → RL → right-left rotate.`},
 
-{n:24, topic:"Identify structure", pts:5, type:"mcq",
- concept:`<p><b>How to classify a tree:</b> A <b>BST</b> needs left &lt; node &lt; right everywhere. A <b>heap</b> needs every parent ≤ (or ≥) its children AND a complete shape. An <b>AVL</b> is a balanced BST. If it's none of those but still has ≤ 2 children per node, it's just a plain <b>binary tree</b>.</p>`,
+{n:24, topic:"Identify structure", topicId:"bst", pts:5, type:"mcq",
+ concept:`<p><b>How to classify a tree:</b></p>
+ <ul>
+   <li><b>BST</b> needs left &lt; node &lt; right at every node (recursively, across whole subtrees).</li>
+   <li><b>Heap</b> needs every parent ≤ children (min) or ≥ children (max), AND a complete shape.</li>
+   <li><b>AVL</b> is a balanced BST — must satisfy BST rule AND balance factor in {−1,0,+1} everywhere.</li>
+   <li>If it's none of those but still has ≤ 2 children per node, it's just a plain <b>binary tree</b>.</li>
+ </ul>
+ <p>To test the BST property, check every node carefully — especially deep subtrees. The rule is recursive: everything in a node's left subtree (not just the direct child) must be smaller.</p>`,
  text:"Choose the best description of the structure.",
  fig:`        45
        /  \\
@@ -597,8 +1398,15 @@ Layer 4: 2^3 = ?`,
  </ol><div class="ans">Answer: binary tree</div>`,
  expl:`The 20 under 35 (in 25's right subtree) violates the BST rule, so it's just a binary tree.`},
 
-{n:25, topic:"Identify structure", pts:5, type:"mcq",
- concept:`<p>Same classification skill, but with <b>string keys</b>. Compare strings character by character using ASCII: digits ('0'–'9' = 48–57) come <b>before</b> uppercase letters ('A'–'Z' = 65–90), which come before lowercase. A <b>min-heap</b> needs every parent ≤ its children and a complete shape.</p>`,
+{n:25, topic:"Identify structure", topicId:"heaps", pts:5, type:"mcq",
+ concept:`<p>Same classification skill as Q24, but with <b>string keys</b>. Compare strings character by character using ASCII:</p>
+ <ul>
+   <li>Digits '0'–'9' = ASCII 48–57.</li>
+   <li>Uppercase 'A'–'Z' = 65–90.</li>
+   <li>Lowercase 'a'–'z' = 97–122.</li>
+ </ul>
+ <p>So '4' &lt; 'D' &lt; 'a' (digits come before letters; uppercase before lowercase).</p>
+ <p>A <b>min-heap</b> needs every parent ≤ its children and a complete shape (filled level by level, left to right).</p>`,
  text:"Choose the best description of the structure (string keys).",
  fig:`        '4b'
         /  \\
@@ -614,8 +1422,10 @@ Layer 4: 2^3 = ?`,
  </ol><div class="ans">Answer: minheap</div>`,
  expl:`Parent ≤ children everywhere + complete shape = min-heap.`},
 
-{n:26, topic:"Identify structure", pts:5, type:"mcq",
- concept:`<p><b>Tree vs forest.</b> A <b>tree</b> must be <b>connected</b> — every vertex reachable from every other. If the edges form two or more separate clumps, it's a <b>forest</b>, not a single tree. Draw the components to check.</p>`,
+{n:26, topic:"Identify structure", topicId:"subgraph", pts:5, type:"mcq",
+ concept:`<p><b>Tree vs forest.</b> A <b>tree</b> must be <b>connected</b> — every vertex reachable from every other. If the edges form two or more separate clumps, it's a <b>forest</b>, not a single tree.</p>
+ <p>To check: draw the edges and see if everything is in one piece. If you can group vertices into separate components (each piece has no edge to any other piece), it's disconnected.</p>
+ <p>Also: a tree needs no cycles. But for this question the cycle check isn't the issue — connectivity is.</p>`,
  text:"Given edges (a,c), (d,e), (d,f), (f,g), choose the best description.",
  fig:`Component 1:  a — c
 Component 2:  e — d — f — g
@@ -630,9 +1440,11 @@ Two disconnected pieces.`,
  </ol><div class="ans">Answer: none of the other answers</div>`,
  expl:`Two disconnected components = a forest, so none of the single-tree labels fit.`},
 
-{n:27, topic:"Expression tree", pts:5, type:"mcq",
+{n:27, topic:"Expression tree", topicId:"exprtree", pts:5, type:"mcq",
  concept:`<p><b>Expression tree.</b> Operators (+ − × /) sit at internal nodes; numbers sit at the leaves. To get <b>postfix</b> (operator after its operands), do a <b>post-order</b> traversal: Left, Right, then the operator.</p>
- <p><b>Watch operand order:</b> for a "/" node, the left child is the numerator and the right child is the denominator — don't swap them.</p>`,
+ <p><b>Watch operand order:</b> for "/" and "−" (non-commutative), the <b>left child is the first operand</b>, the <b>right child is the second</b>. So a "/" with children (2, 5) means 2 ÷ 5, not 5 ÷ 2.</p>
+ <p>For this tree: root "−" with left=16 and right="/" subtree. The "/" has left=2, right=5. So the expression is 16 − (2 / 5).</p>
+ <p>Postfix is built bottom-up. Left subtree of root = "16" (a single leaf). Right subtree of root = post-order of the "/" subtree = "2 5 /". Then the root operator. Total: <b>16 2 5 / −</b>.</p>`,
  text:"Choose the appropriate <b>postfix expression</b> for the tree.",
  fig:`         −
         / \\
@@ -650,8 +1462,15 @@ Two disconnected pieces.`,
  </ol><div class="ans">Answer: none of the other answers</div>`,
  expl:`Correct postfix is 16 2 5 / − , which isn't offered → none of the other answers.`},
 
-{n:28, topic:"Heaps", pts:5, type:"mcq",
- concept:`<p><b>Counting leaves in a heap.</b> A heap is a complete binary tree stored in an array (indices 1…n). The second half of the array is always the leaves: indices ⌊n/2⌋+1 through n. So the leaf count is <b>⌈n/2⌉</b> (about half).</p>`,
+{n:28, topic:"Heaps", topicId:"heaps", pts:5, type:"mcq",
+ concept:`<p><b>Counting leaves in a heap.</b> A heap is a complete binary tree stored in an array (indices 1…n). The second half of the array is always the leaves.</p>
+ <p>For n nodes:</p>
+ <ul>
+   <li>Internal nodes: indices 1 through ⌊n/2⌋ (they have at least one child).</li>
+   <li>Leaves: indices ⌊n/2⌋+1 through n (they have no children).</li>
+   <li><b>Leaf count = ⌈n/2⌉</b> — roughly half the nodes.</li>
+ </ul>
+ <p>Examples: n=20 → leaves at indices 11-20 = 10 leaves. n=15 → leaves at indices 8-15 = 8 leaves. n=100 → 50 leaves.</p>`,
  text:"Identify the number of <b>leaf elements</b> in a heap containing <b>20 nodes</b>.",
  options:["great than 14","14","11","10","13","less than 10","12"],
  correct:3,
@@ -662,8 +1481,10 @@ Two disconnected pieces.`,
  </ol><div class="ans">Answer: 10</div>`,
  expl:`Leaves = ⌈n/2⌉ = ⌈20/2⌉ = 10.`},
 
-{n:29, topic:"MST edges", pts:5, type:"mcq",
- concept:`<p><b>How many edges in a spanning tree?</b> To connect V vertices with no cycles you need exactly <b>V − 1</b> edges — one fewer than the number of vertices. This is true for <i>any</i> spanning tree, minimum or not. You don't even need to run the algorithm; just count the vertices.</p>`,
+{n:29, topic:"MST edges", topicId:"prim", pts:5, type:"mcq",
+ concept:`<p><b>How many edges in a spanning tree?</b> To connect V vertices with no cycles you need exactly <b>V − 1</b> edges — one fewer than the number of vertices.</p>
+ <p>This is true for <i>any</i> spanning tree, minimum or not. The fact that it's an MST (cheapest) doesn't change the edge count — only the weights chosen. You don't even need to run Prim's; just count the vertices.</p>
+ <p>Why V − 1? A tree with V vertices and fewer than V − 1 edges would be disconnected. More than V − 1 would create a cycle.</p>`,
  text:"For a 10-vertex (A–J) weighted undirected graph, choose the <b>number of edges in the MST</b>.",
  fig:`Vertices A,B,C,D,E,F,G,H,I,J  →  V = 10`,
  options:["less than 6","6","7","8","9","greater than 9"],
@@ -675,8 +1496,16 @@ Two disconnected pieces.`,
  </ol><div class="ans">Answer: 9</div>`,
  expl:`MST of V vertices has V − 1 edges; 10 − 1 = 9.`},
 
-{n:30, topic:"AVL balance factor", pts:5, type:"mcq",
- concept:`<p><b>Balance factor of a node</b> = height(left subtree) − height(right subtree). The <b>height</b> of a subtree is the number of levels in it: a single leaf has height 1, an empty subtree has height 0. Compute each side's height, then subtract.</p>`,
+{n:30, topic:"AVL balance factor", topicId:"avl", pts:5, type:"mcq",
+ concept:`<p><b>Balance factor of a node</b> = height(left subtree) − height(right subtree).</p>
+ <p><b>Heights:</b></p>
+ <ul>
+   <li>An empty subtree has height 0.</li>
+   <li>A single leaf has height 1.</li>
+   <li>A node with at least one child has height = 1 + max(height of left, height of right).</li>
+ </ul>
+ <p>To compute BF at a node, find the heights of its two subtrees separately, then subtract.</p>
+ <p>For Howard: figure out the height of his left subtree (rooted at Grace) and his right subtree (rooted at Marvin). Subtract.</p>`,
  text:"Choose the correct balance factor to replace the <b>?</b> at Howard.",
  fig:`          Fatema (2)
          /        \\
@@ -694,8 +1523,10 @@ Two disconnected pieces.`,
  </ol><div class="ans">Answer: −1</div>`,
  expl:`Left height 1, right height 2 → 1 − 2 = −1.`},
 
-{n:31, topic:"AVL rotation", pts:5, type:"mcq",
- concept:`<p><b>When does an AVL tree need fixing?</b> Only when some node's balance factor reaches <b>±2</b>. If every node's BF is −1, 0, or +1, the tree is already balanced and <b>no rotation is needed</b>. So: scan every node's BF; if all are within ±1, the answer is "no correction."</p>`,
+{n:31, topic:"AVL rotation", topicId:"avl", pts:5, type:"mcq",
+ concept:`<p><b>When does an AVL tree need fixing?</b> Only when some node's balance factor reaches <b>±2</b>. If every node's BF is in {−1, 0, +1}, the tree is already balanced and <b>no rotation is needed</b>.</p>
+ <p>Procedure: scan every node's BF. If all are within ±1, the answer is "no correction." If any node has |BF| = 2, the answer is one of the four rotation types (depending on the LL/LR/RL/RR pattern).</p>
+ <p>Don't be fooled by trees that look lopsided visually — only the BFs matter, and they only need to be within ±1.</p>`,
  text:"Given the AVL figure (Fatema's BF = 1), choose the rotation needed, if any.",
  fig:`          Fatema (1)
          /        \\
@@ -713,8 +1544,10 @@ Two disconnected pieces.`,
  </ol><div class="ans">Answer: no correction needed</div>`,
  expl:`Every BF is within ±1, so the tree is already balanced — no rotation.`},
 
-{n:32, topic:"AVL balance factor", pts:5, type:"mcq",
- concept:`<p>The balance-factor <b>formula</b> is always height(left) − height(right). The answer choices here are worded as "X minus Y," so figure out the height of each side first. A single child counts as height 1; a missing side is height 0.</p>`,
+{n:32, topic:"AVL balance factor", topicId:"avl", pts:5, type:"mcq",
+ concept:`<p>The balance-factor <b>formula</b> is always height(left) − height(right). The answer choices here are worded as "X minus Y," so figure out the height of each side first.</p>
+ <p>A single child counts as height 1. A missing (empty) side is height 0. So a node with one child on the left and nothing on the right has BF = 1 − 0 = "one minus zero."</p>
+ <p>If the node's displayed BF is +1, it leans left (left taller). If −1, it leans right.</p>`,
  text:"Choose the formula for computing the <b>balance factor of the 55 node</b>.",
  fig:`        45 (BF 0)
        /  \\
@@ -731,8 +1564,9 @@ Two disconnected pieces.`,
  </ol><div class="ans">Answer: one minus zero</div>`,
  expl:`Left height 1, right height 0 → "one minus zero."`},
 
-{n:33, topic:"Prim's MST", pts:5, type:"mcq",
- concept:`<p><b>Prim's algorithm</b>, recap: start at a vertex, then repeatedly grab the <b>cheapest edge leaving the current tree</b> (one endpoint inside, one outside). Add the new vertex and repeat. Track the edges in the order you add them.</p>`,
+{n:33, topic:"Prim's MST", topicId:"prim", pts:5, type:"mcq",
+ concept:`<p><b>Prim's algorithm</b>, recap: start at a vertex, then repeatedly grab the <b>cheapest edge leaving the current tree</b> (one endpoint inside, one outside). Add the new vertex and repeat. Track the edges in the order you add them.</p>
+ <p>Read the figure: V, W, X, Y, Z are the 5 vertices, and the numbers next to edges are weights. Make sure you identify all edges incident to each vertex before scanning for the cheapest.</p>`,
  text:"Using <b>Prim's MST</b> starting at node <b>W</b>, choose the <b>3rd edge gathered</b>.",
  fig:`Edges (weights):
   V-W: 5   V-Z: 8   V-Y: 4
@@ -748,57 +1582,102 @@ Two disconnected pieces.`,
  expl:`Edges added: WY(3), VY(4), then <b>WX(6)</b> is the 3rd.`}
 ];
 
-const state={};
+/* =========================================================================
+   RENDER + INTERACTION
+   ========================================================================= */
+const state = {};
 function toggleNav(){document.getElementById("nav").classList.toggle("open");document.getElementById("scrim").classList.toggle("show");}
 function closeNav(){if(window.innerWidth<=820){document.getElementById("nav").classList.remove("open");document.getElementById("scrim").classList.remove("show");}}
+
 function renderNav(){
-  let h=`<div class="nav-label">Start</div><a href="#intro" onclick="closeNav()"><span class="qdot" style="background:var(--accent)"></span>How to use this</a><div class="nav-label">Questions 1–33</div>`;
-  QS.forEach(q=>{h+=`<a href="#q${q.n}" onclick="closeNav()"><span class="qdot" id="dot${q.n}"></span>Q${q.n} · ${q.topic}</a>`;});
+  let h=`<div class="nav-section purple">📚 Topic Guide</div>`;
+  TOPICS.forEach(t=>{h+=`<a href="#t-${t.id}" onclick="closeNav()"><span class="qdot" style="background:var(--purple)"></span><span>${t.icon} ${t.title}</span></a>`;});
+  h+=`<div class="nav-section">🎯 Quiz Tutor</div><a href="#intro" onclick="closeNav()"><span class="qdot" style="background:var(--accent)"></span>How this works</a>`;
+  QS.forEach(q=>{
+    h+=`<a href="#q${q.n}" onclick="closeNav()">
+      <span class="qdot" id="dot${q.n}"></span>
+      <span class="num">Q${q.n}</span>
+      <span style="display:flex;flex-direction:column;line-height:1.25">
+        <span style="font-size:13px;color:var(--text-dim)">${q.topic}</span>
+      </span>
+    </a>`;
+  });
   document.getElementById("nav").innerHTML=h;
 }
+
 function renderMain(){
-  let h=`<section class="intro" id="intro">
-    <h2>Learn every question, from scratch</h2>
-    <div class="card"><p>This covers <b>only</b> Practice Quiz 3 (the 33 screenshots). Every question is built in three parts:</p>
-    <p>📖 <b>The concept</b> — the topic explained as if you've never seen it.</p>
-    <p>❓ <b>The question</b> — the actual quiz question with its figure.</p>
-    <p>🔑 <b>How to solve it</b> — a step-by-step walkthrough (tap to expand).</p>
-    <p>Multiple-choice questions give instant feedback when you tap an answer. Written questions have a model answer to reveal.</p></div>
-    <div class="card tip"><b>Works offline.</b> This whole page is self-contained — once it's on your device it runs with no internet, no server, anywhere.</div>
-  </section>`;
+  let h=`
+    <div class="section-hero topic">
+      <h2>📚 Topic Guide</h2>
+      <p>Learn the topics covered on the exam — independent of any specific question. Each topic is a self-contained mini-lesson: definition, how it works, worked examples, and common traps. Skim before drilling questions, or jump back here whenever you need a refresher.</p>
+    </div>
+  `;
+  TOPICS.forEach(t=>{h+=renderTopic(t);});
+
+  h+=`
+    <div class="section-hero quiz" id="intro">
+      <h2>🎯 Quiz Tutor — 33 questions</h2>
+      <p>The full Practice Quiz 3. Every question shows the <b>concept first</b> (so you can study even if you don't remember the topic), then the <b>question</b>, a <b>space to write your own answer</b>, and a <b>step-by-step solution</b> you can reveal. Multiple-choice gives instant feedback.</p>
+    </div>
+  `;
   QS.forEach(q=>{h+=renderQ(q);});
-  h+=`<div class="footer-note">33 questions · CSC 331 Practice Quiz 3 · concept + question + solution on every one</div>`;
+
+  h+=`<div class="footer-note">📚 ${TOPICS.length} topics · 🎯 ${QS.length} questions · works offline · last updated for Practice Quiz 3</div>`;
   document.getElementById("main").innerHTML=h;
+  // Restore saved textarea values
+  QS.forEach(q=>{if(q.type==="written"){const t=document.getElementById("ta"+q.n);if(t){t.value=localStorage.getItem("answer"+q.n)||"";}}});
 }
+
+function renderTopic(t){
+  return `<div class="topic-card" id="t-${t.id}">
+    <div class="qhead">
+      <span class="qnum" style="background:var(--purple);color:#1d0d3a">${t.icon}</span>
+      <span class="badge purple">Topic</span>
+    </div>
+    <h2 style="margin-top:6px">${t.title}</h2>
+    ${t.body}
+  </div>`;
+}
+
 function renderQ(q){
   const fig=q.figHTML?`<div class="figure">${q.figHTML}</div>`:(q.fig?`<div class="figure"><pre>${esc(q.fig)}</pre></div>`:"");
+  const topicLink=q.topicId?`<a class="topic-link" href="#t-${q.topicId}">📖 Review topic: ${TOPICS.find(x=>x.id===q.topicId)?.title||q.topicId}</a>`:"";
   let inter="";
   if(q.type==="mcq"){
     const opts=q.options.map((o,i)=>`<div class="option" onclick="answer(${q.n},${i},${q.correct})" data-q="${q.n}" data-i="${i}"><span class="ol">${String.fromCharCode(65+i)}</span><span>${o}</span></div>`).join("");
     inter=`<div class="options">${opts}</div><div class="feedback" id="fb${q.n}"></div>
-      <div class="solve"><button class="solve-toggle" onclick="toggleSolve(${q.n})">🔑 How to solve it</button><div class="solve-body" id="solve${q.n}">${q.solve}</div></div>
+      <div class="solve"><button class="solve-toggle" onclick="toggleSolve(${q.n})">🔑 How to solve it (step-by-step)</button><div class="solve-body" id="solve${q.n}">${q.solve}</div></div>
       <div class="qactions"><button class="qbtn" onclick="resetQ(${q.n})">↻ Reset</button></div>`;
   } else {
-    inter=`<div class="solve"><button class="solve-toggle" onclick="toggleSolve(${q.n})">🔑 Show model answer & how to solve</button><div class="solve-body" id="solve${q.n}">${q.model}</div></div>`;
+    inter=`
+      <div class="write-area">
+        <div class="write-area-label">✍️ Your answer / code <span class="saved-tag" id="saved${q.n}">saved</span></div>
+        <textarea id="ta${q.n}" placeholder="Type your answer here — your text auto-saves to this device so it persists across reloads..." oninput="saveAnswer(${q.n}, this.value)"></textarea>
+      </div>
+      <div class="solve"><button class="solve-toggle" onclick="toggleSolve(${q.n})">🔑 Show model answer & how to solve</button><div class="solve-body" id="solve${q.n}">${q.model}</div></div>
+      <div class="qactions"><button class="qbtn" onclick="clearAnswer(${q.n})">↻ Clear my answer</button></div>`;
   }
   return `<div class="qcard" id="q${q.n}">
     <div class="qhead"><span class="qnum">Q${q.n}</span><span class="badge topic">${q.topic}</span>
       <span class="badge ${q.type==='written'?'written':''}">${q.type==='mcq'?'multiple choice':'written'}</span><span class="qpts">${q.pts} pts</span></div>
-    <div class="concept"><div class="clab">📖 The concept</div>${q.concept}</div>
+    <div class="concept"><div class="clab">📖 The concept</div>${q.concept}${topicLink}</div>
     <div class="qprompt"><div class="qlab">❓ The question</div><div class="qtext">${q.text}</div>${fig}${inter}</div>
   </div>`;
 }
+
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
 function answer(n,i,correct){
   if(state[n]&&state[n].answered)return;
   state[n]={answered:true,correct:i===correct};
   document.querySelectorAll(`[data-q="${n}"]`).forEach(o=>{o.classList.add("disabled");const idx=parseInt(o.dataset.i);if(idx===correct)o.classList.add("correct");else if(idx===i)o.classList.add("wrong");});
   const q=QS.find(x=>x.n===n),fb=document.getElementById("fb"+n);
   fb.className="feedback show "+(i===correct?"good":"bad");
-  fb.innerHTML=`<span class="lab">${i===correct?"✓ Correct.":"✗ Not quite."}</span> ${q.expl} <i>Tap "How to solve it" for the full steps.</i>`;
+  fb.innerHTML=`<span class="lab">${i===correct?"✓ Correct.":"✗ Not quite."}</span> ${q.expl} <i>Tap "How to solve it" for the full step-by-step.</i>`;
   if(i!==correct){document.getElementById("solve"+n).classList.add("show");}
   updateProgress();updateDot(n);
 }
+
 function resetQ(n){
   delete state[n];
   document.querySelectorAll(`[data-q="${n}"]`).forEach(o=>o.classList.remove("disabled","correct","wrong"));
@@ -806,18 +1685,41 @@ function resetQ(n){
   document.getElementById("solve"+n).classList.remove("show");
   updateProgress();updateDot(n);
 }
+
 function toggleSolve(n){
   const s=document.getElementById("solve"+n);s.classList.toggle("show");
   if(s.classList.contains("show")&&!state[n]){state[n]={revealed:true};updateDot(n);}
 }
-function updateDot(n){const d=document.getElementById("dot"+n);if(!d)return;d.className="qdot";
+
+function saveAnswer(n, val){
+  localStorage.setItem("answer"+n, val);
+  const tag=document.getElementById("saved"+n);
+  tag.classList.add("show");
+  clearTimeout(tag._t);
+  tag._t=setTimeout(()=>tag.classList.remove("show"), 1200);
+  if(val.trim().length>0 && !state[n]){state[n]={revealed:true};updateDot(n);}
+}
+
+function clearAnswer(n){
+  localStorage.removeItem("answer"+n);
+  document.getElementById("ta"+n).value="";
+  if(state[n]&&state[n].revealed&&!state[n].answered){delete state[n];updateDot(n);}
+}
+
+function updateDot(n){
+  const d=document.getElementById("dot"+n);if(!d)return;d.className="qdot";
   if(state[n]&&state[n].answered)d.classList.add(state[n].correct?"done":"wrong");
-  else if(state[n]&&state[n].revealed)d.classList.add("seen");}
+  else if(state[n]&&state[n].revealed)d.classList.add("seen");
+}
+
 function updateProgress(){
-  const m=QS.filter(q=>q.type==="mcq");const a=m.filter(q=>state[q.n]&&state[q.n].answered);const c=a.filter(q=>state[q.n].correct);
+  const m=QS.filter(q=>q.type==="mcq");
+  const a=m.filter(q=>state[q.n]&&state[q.n].answered);
+  const c=a.filter(q=>state[q.n].correct);
   document.getElementById("score").textContent=`${c.length} / ${m.length} MCQ`;
   document.getElementById("bar").style.width=(a.length/m.length*100)+"%";
 }
+
 renderNav();renderMain();updateProgress();
 </script>
 </body>
